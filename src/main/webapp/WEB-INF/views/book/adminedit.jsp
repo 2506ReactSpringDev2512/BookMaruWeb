@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BookWeb - 책 수정</title>
+<title>BookWeb - 책 수정</title> 
 <style>
     /* BookWeb - 공통 스타일 */
     * {
