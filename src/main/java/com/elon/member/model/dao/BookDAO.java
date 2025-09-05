@@ -96,4 +96,16 @@ public class BookDAO {
         conn.close();
         return result;
 	}
+
+	public int deleteBook(String bNo, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+        int result = 0;
+        String query = "DELETE FROM BOOK_TBL WHERE BOOK_NO = ?";
+        pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, bNo);
+        result = pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+        return result;
+	}
 }

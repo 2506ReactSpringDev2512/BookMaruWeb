@@ -60,4 +60,15 @@ public class BookService {
         return result;
 	}
 
+	public int deleteBook(String bNo) {
+		int result = 0;
+        try {
+            Connection conn = bookTemplate.getConnection();
+            result = bDao.deleteBook(bNo, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+	}
+
 }

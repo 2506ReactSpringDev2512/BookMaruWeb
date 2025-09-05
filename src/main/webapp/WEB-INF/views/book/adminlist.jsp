@@ -74,6 +74,26 @@
         font-size: 18px;
         margin: 50px 0;
     }
+/* Link Styles */
+    .back-link {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .back-link p {
+        color: #666;
+        font-size: 14px;
+    }
+
+    .back-link a {
+        color: #6b7280;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .back-link a:hover {
+        text-decoration: underline;
+    }
 </style>
 </head>
 <body>
@@ -105,10 +125,15 @@
                             </div>
                         </form>
                     </c:forEach>
+                    
                 </div>
+                <div class="back-link">
+                <p><a href="<c:url value='/admin/main'/>">관리자 페이지로 돌아가기</a></p>
+            </div>
             </c:otherwise>
         </c:choose>
     </div>
+    
 
 </body>
 </html>
