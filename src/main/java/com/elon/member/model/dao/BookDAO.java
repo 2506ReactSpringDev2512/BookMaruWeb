@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.elon.member.model.vo.Book;
+import com.elon.member.model.vo.Member;
 
 public class BookDAO {
 
@@ -95,5 +96,53 @@ public class BookDAO {
         pstmt.close();
         conn.close();
         return result;
+	}
+
+	public List<Book> searchBookList(String bookSearchTerm, String searchType, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Book> bList = new ArrayList<>();
+		
+		String query = "";
+		
+		switch(searchType) {
+		case "name":
+			query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ?";
+			break;
+		case "author":
+			query = "SELECT * FROM BOOK_TBL WHERE AUTHOR LIKE ?";
+			break;
+		case "all":
+			query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ? OR AUTHOR LIKE ?";
+		}
+		
+		pstmt = conn.prepareStatement(query);
+		
+		if("all".equals(searchType)) {
+		    pstmt.setString(1, "%" + bookSearchTerm + "%");
+		    pstmt.setString(2, "%" + bookSearchTerm + "%");
+		} else {
+		    pstmt.setString(1, "%" + bookSearchTerm + "%");
+		}
+		
+		rset = pstmt.executeQuery();
+		
+		while(rset.next()) {
+            String bookName   = rset.getString("BOOK_NAME");
+            String author   = rset.getString("AUTHOR");
+            String publisher = rset.getString("PUBLISHER");
+            String category = rset.getString("CATEGORY");
+            int bookCount = rset.getInt("BOOK_COUNT");
+            String bookIntroTitle = rset.getString("BOOK_INTRO_TITLE");
+            String bookIntroContent = rset.getString("BOOK_INTRO_CONTENT");
+            Book book = new Book(bookName, author, publisher, category, bookCount, bookIntroTitle, bookIntroContent);
+            bList.add(book);
+	    }
+		
+		rset.close();
+		pstmt.close();
+		conn.close();
+		
+		return bList;
 	}
 }

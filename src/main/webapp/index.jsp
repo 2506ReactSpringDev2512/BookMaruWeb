@@ -27,6 +27,7 @@
 	<c:if test="${memberId eq null}">
 		<ul>
 			<li><a href="<c:url value='/member/login'/>">로그인</a></li>
+			<li><a href="<c:url value='/book/searchbook'/>">검색</a></li>
 		</ul>
 	</c:if>
 	<jsp:include page="WEB-INF/views/common/footer.jsp"></jsp:include>

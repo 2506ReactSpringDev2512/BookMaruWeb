@@ -2,6 +2,7 @@ package com.elon.member.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import com.elon.member.common.BOOKTemplate;
 import com.elon.member.model.dao.BookDAO;
@@ -58,6 +59,19 @@ public class BookService {
             e.printStackTrace();
         }
         return result;
+	}
+
+	public List<Book> searchBookList(String bookSearchTerm, String searchType) {
+		List<Book> bList = new ArrayList<>();
+		try {
+			Connection conn = bookTemplate.getConnection();
+			bList = bDao.searchBookList(bookSearchTerm, searchType, conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return bList;
 	}
 
 }
