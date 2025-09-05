@@ -38,6 +38,7 @@
         background-color: #fafafa;
         cursor: pointer;
         transition: all 0.3s ease;
+        height: 250px;
     }
     .book-item:hover {
         border-color: #4CAF50;
@@ -53,7 +54,7 @@
         height: 200px;
         object-fit: cover;
         border-radius: 4px;
-        margin-bottom: 10px;
+        margin-bottom: 0px;
         border: 1px solid #ddd;
     }
     .book-info {
@@ -94,13 +95,53 @@
     .back-link a:hover {
         text-decoration: underline;
     }
+    
+    /* 별 아이콘 스타일 */
+    .star-icon {
+        position: absolute;
+        top: 0px;
+        left: 5px;
+        font-size: 30px;
+        cursor: pointer;
+        z-index: 10;
+    }
+    
+    .star-recommended {
+        color: #FFD700;
+    }
+    
+    .star-not-recommended {
+        color: #ddd;
+    }
+    
+    /* 하트 아이콘 스타일 */
+    .heart-icon {
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        font-size: 40px;
+        cursor: pointer;
+        z-index: 10;
+    }
+    
+    .heart-advertise {
+        color: #FF6B6B;
+    }
+    
+    .heart-not-advertise {
+        color: #ddd;
+    }
+    
+    .book-item {
+        position: relative;
+    }
 </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
             <h1>도서 관리 시스템</h1>
-            <h2>등록된 도서 목록</h2>
+            <h2>⭐ - 추천도서        ♥️ - 광고도서</h2>
         </div>
         
         <c:choose>
@@ -115,6 +156,18 @@
                         <form action="${pageContext.request.contextPath}/admin/list" method="post" class="book-form">
                             <input type="hidden" name="bNo" value="${book.bookNo}">
                             <div class="book-item" onclick="this.closest('form').submit()">
+                                <!-- 별 아이콘 추가 -->
+                                <span class="star-icon ${book.recommendedYN == 'Y' ? 'star-recommended' : 'star-not-recommended'}" 
+                                      onclick="event.stopPropagation(); toggleRecommended('${book.bookNo}', '${book.recommendedYN}')">
+                                    ★
+                                </span>
+                                
+                                <!-- 하트 아이콘 추가 -->
+                                <span class="heart-icon ${book.advertiseYN == 'Y' ? 'heart-advertise' : 'heart-not-advertise'}" 
+                                      onclick="event.stopPropagation(); toggleAdvertise('${book.bookNo}', '${book.advertiseYN}')">
+                                    ♥
+                                </span>
+                                
                                 <img src="${pageContext.request.contextPath}/BOOK-IMG/${book.bookNo}.jpg" 
                                      alt="책 이미지" 
                                      class="book-image"
@@ -134,6 +187,53 @@
         </c:choose>
     </div>
     
+    <script>
+        function toggleRecommended(bookNo, currentStatus) {
+            // AJAX를 사용하여 추천 상태를 변경
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '${pageContext.request.contextPath}/admin/recommended-book';
+            
+            var bNoInput = document.createElement('input');
+            bNoInput.type = 'hidden';
+            bNoInput.name = 'bNo';
+            bNoInput.value = bookNo;
+            
+            var recommendedInput = document.createElement('input');
+            recommendedInput.type = 'hidden';
+            recommendedInput.name = 'recommendedYN';
+            recommendedInput.value = currentStatus;
+            
+            form.appendChild(bNoInput);
+            form.appendChild(recommendedInput);
+            document.body.appendChild(form);
+            
+            form.submit();
+        }
+        
+        function toggleAdvertise(bookNo, currentStatus) {
+            // AJAX를 사용하여 광고 상태를 변경
+            var form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '${pageContext.request.contextPath}/admin/advertise-book';
+            
+            var bNoInput = document.createElement('input');
+            bNoInput.type = 'hidden';
+            bNoInput.name = 'bNo';
+            bNoInput.value = bookNo;
+            
+            var advertiseInput = document.createElement('input');
+            advertiseInput.type = 'hidden';
+            advertiseInput.name = 'advertiseYN';
+            advertiseInput.value = currentStatus;
+            
+            form.appendChild(bNoInput);
+            form.appendChild(advertiseInput);
+            document.body.appendChild(form);
+            
+            form.submit();
+        }
+    </script>
 
 </body>
 </html>

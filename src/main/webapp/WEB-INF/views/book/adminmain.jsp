@@ -168,6 +168,7 @@
                 <button type="button" class="admin-button" onclick="location.href='<c:url value="/admin/list"/>'">
                     책 수정
                 </button>
+                
             </div>
             
             <div class="back-link">

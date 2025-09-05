@@ -49,7 +49,6 @@ public class BookDAO {
         }
         rset.close();
         pstmt.close();
-        conn.close();
         return bList;
     }
 
@@ -108,4 +107,145 @@ public class BookDAO {
         conn.close();
         return result;
 	}
+
+	public int recommendedBook(String bNo, String recommendedYN, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+        int result = 0;
+        String query = "UPDATE BOOK_TBL SET RECOMMENDED_YN = ? WHERE BOOK_NO = ?";
+        pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, recommendedYN);
+        pstmt.setString(2, bNo);
+        result = pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+        return result;
+	}
+
+	public int advertiseBook(String bNo, String advertiseYN, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+        int result = 0;
+        String query = "UPDATE BOOK_TBL SET ADVERTISE_YN = ? WHERE BOOK_NO = ?";
+        pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, advertiseYN);
+        pstmt.setString(2, bNo);
+        result = pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+        return result;
+	}
+
+	public List<Book> searchBooks(String searchType, String searchTerm, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        List<Book> bList = new ArrayList<>();
+        String query = "";
+        
+        if ("name".equals(searchType)) {
+            query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ?";
+        } else if ("author".equals(searchType)) {
+            query = "SELECT * FROM BOOK_TBL WHERE AUTHOR LIKE ?";
+        } else {
+            query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ? OR AUTHOR LIKE ?";
+        }
+        
+        pstmt = conn.prepareStatement(query);
+        if ("all".equals(searchType)) {
+            pstmt.setString(1, "%" + searchTerm + "%");
+            pstmt.setString(2, "%" + searchTerm + "%");
+        } else {
+            pstmt.setString(1, "%" + searchTerm + "%");
+        }
+        
+        rset = pstmt.executeQuery();
+        while(rset.next()) {
+            String bookNo = rset.getString("BOOK_NO");
+            String bookIntroTitle = rset.getString("BOOK_INTRO_TITLE");
+            Book book = new Book(bookNo, bookIntroTitle);
+            bList.add(book);
+        }
+        rset.close();
+        pstmt.close();
+        conn.close();
+        return bList;
+	}
+
+    public List<Book> selectRecommendedBooks(Connection conn) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        List<Book> bList = new ArrayList<>();
+        String query = "SELECT * FROM BOOK_TBL WHERE RECOMMENDED_YN = 'Y'";
+        pstmt = conn.prepareStatement(query);
+        rset = pstmt.executeQuery();
+        while(rset.next()) {
+            String bookNo = rset.getString("BOOK_NO");
+            String bookName = rset.getString("BOOK_NAME");
+            String author = rset.getString("AUTHOR");
+            String publisher = rset.getString("PUBLISHER");
+            String category = rset.getString("CATEGORY");
+            int bookCount = rset.getInt("BOOK_COUNT");
+            String bookIntroTitle = rset.getString("BOOK_INTRO_TITLE");
+            String bookIntroContent = rset.getString("BOOK_INTRO_CONTENT");
+            String recommendedYN = rset.getString("RECOMMENDED_YN");
+            String advertiseYN = rset.getString("ADVERTISE_YN");
+            Book book = new Book(bookNo, bookName, author, publisher, category, bookCount, bookIntroTitle, bookIntroContent, recommendedYN, advertiseYN);
+            bList.add(book);
+        }
+        rset.close();
+        pstmt.close();
+        return bList;
+    }
+    
+    public List<Book> selectNewBooks(Connection conn) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        List<Book> bList = new ArrayList<>();
+        String query = "SELECT * FROM BOOK_TBL ORDER BY Entrance_DATE DESC";
+        pstmt = conn.prepareStatement(query);
+        rset = pstmt.executeQuery();
+        while(rset.next()) {
+            String bookNo = rset.getString("BOOK_NO");
+            String bookName = rset.getString("BOOK_NAME");
+            String author = rset.getString("AUTHOR");
+            String publisher = rset.getString("PUBLISHER");
+            String category = rset.getString("CATEGORY");
+            int bookCount = rset.getInt("BOOK_COUNT");
+            String bookIntroTitle = rset.getString("BOOK_INTRO_TITLE");
+            String bookIntroContent = rset.getString("BOOK_INTRO_CONTENT");
+            String recommendedYN = rset.getString("RECOMMENDED_YN");
+            String advertiseYN = rset.getString("ADVERTISE_YN");
+            Book book = new Book(bookNo, bookName, author, publisher, category, bookCount, bookIntroTitle, bookIntroContent, recommendedYN, advertiseYN);
+            bList.add(book);
+        }
+        rset.close();
+        pstmt.close();
+        return bList;
+    }
+    
+    public List<Book> selectAdvertiseBooks(Connection conn) throws SQLException {
+        PreparedStatement pstmt = null;
+        ResultSet rset = null;
+        List<Book> bList = new ArrayList<>();
+        String query = "SELECT * FROM BOOK_TBL WHERE ADVERTISE_YN = 'Y' AND ROWNUM <= 5";
+        pstmt = conn.prepareStatement(query);
+        rset = pstmt.executeQuery();
+        while(rset.next()) {
+            String bookNo = rset.getString("BOOK_NO");
+            String bookName = rset.getString("BOOK_NAME");
+            String author = rset.getString("AUTHOR");
+            String publisher = rset.getString("PUBLISHER");
+            String category = rset.getString("CATEGORY");
+            int bookCount = rset.getInt("BOOK_COUNT");
+            String bookIntroTitle = rset.getString("BOOK_INTRO_TITLE");
+            String bookIntroContent = rset.getString("BOOK_INTRO_CONTENT");
+            String recommendedYN = rset.getString("RECOMMENDED_YN");
+            String advertiseYN = rset.getString("ADVERTISE_YN");
+            
+            Book book = new Book(bookNo, bookName, author, publisher, category, bookCount, 
+                               bookIntroTitle, bookIntroContent, recommendedYN, advertiseYN);
+            bList.add(book);
+        }
+        rset.close();
+        pstmt.close();
+        return bList;
+    }
 }

@@ -53,6 +53,11 @@ public class Book {
 		this.bookIntroContent = bookIntroContent;
 	}
 
+	public Book(String bookNo, String bookIntroTitle) {
+		this.bookNo = bookNo;
+		this.bookIntroTitle = bookIntroTitle;
+	}
+
 
 	public String getBookNo() {
 		return bookNo;

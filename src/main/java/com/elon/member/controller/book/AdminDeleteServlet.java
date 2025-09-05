@@ -41,13 +41,13 @@ public class AdminDeleteServlet extends HttpServlet {
                     e.printStackTrace();
                 }
                 
-                response.sendRedirect(request.getContextPath() + "/admin/list");
+                response.sendRedirect("/admin/list");
             } else {
                 request.setAttribute("errorMessage", "책 삭제에 실패했습니다.");
                 request.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(request, response);
             }
         } else {
-            response.sendRedirect(request.getContextPath() + "/admin/list");
+            response.sendRedirect("/admin/list");
         }
     }
 }
