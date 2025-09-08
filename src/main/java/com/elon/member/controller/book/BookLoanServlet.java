@@ -9,7 +9,6 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import com.elon.member.model.service.BookService;
-import com.elon.member.model.vo.Member;
 
 @WebServlet("/book/loan")
 public class BookLoanServlet extends HttpServlet {
