@@ -143,6 +143,7 @@
         }
 </style>
 </head>
+
 <body>
     <!-- Footer -->
     <footer id="footer">

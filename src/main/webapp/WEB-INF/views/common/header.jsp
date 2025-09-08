@@ -33,6 +33,18 @@
         justify-content: center;
         max-width: 500px;
         margin: 0 20px;
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
+
+    /* 검색창 */
+    .search-form {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        max-width: 500px;
     }
 
     .search-form input[type="text"] {
@@ -103,6 +115,21 @@
 	        <% } else { %>
 	            <a href="<%=request.getContextPath()%>/member/login">로그인</a>
 	        <% } %>
+	        <img src="<%=request.getContextPath()%>/resources/images/Image20250904111315.png" alt="로고">
+	    	<span>책마루</span>
+	    </div>
+		
+		<!-- 검색창 -->
+	    <form class="search-form" action="<%=request.getContextPath()%>/book/searchbook" method="get">
+	        <input type="text" name="bookSearchTerm" placeholder="검색어 입력">
+	        <button type="submit"><i class="fa fa-search"></i></button>
+	    </form>
+		
+		<!-- 메뉴 -->
+	    <nav class="menu">
+	        <a href="###">신간도서</a>
+	        <a href="###">추천도서</a>
+	        <a href="###">내 서재</a>
 	    </nav>
 	    
 	</header>	

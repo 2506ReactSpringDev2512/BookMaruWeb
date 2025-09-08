@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.elon.member.model.vo.Book;
+import com.elon.member.model.vo.BookLoan;
 
 public class BookDAO {
 
@@ -273,4 +274,101 @@ public class BookDAO {
         conn.close();
         return result;
 	}
+	
+	// 책 검색
+	public List<Book> searchBookList(String bookSearchTerm, String searchType, Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Book> bList = new ArrayList<>();
+		
+		String query = "";
+		
+		switch(searchType) {
+		case "name":
+			query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ?";
+			break;
+		case "author":
+			query = "SELECT * FROM BOOK_TBL WHERE AUTHOR LIKE ?";
+			break;
+		case "all":
+			query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ? OR AUTHOR LIKE ?";
+		}
+		
+		pstmt = conn.prepareStatement(query);
+		
+		if("all".equals(searchType)) {
+		    pstmt.setString(1, "%" + bookSearchTerm + "%");
+		    pstmt.setString(2, "%" + bookSearchTerm + "%");
+		} else {
+		    pstmt.setString(1, "%" + bookSearchTerm + "%");
+		}
+		
+		rset = pstmt.executeQuery();
+		
+		while(rset.next()) {
+            String bookName   		= rset.getString("BOOK_NAME");
+            String author   		= rset.getString("AUTHOR");
+            String publisher 		= rset.getString("PUBLISHER");
+            String category 		= rset.getString("CATEGORY");
+            int bookCount 			= rset.getInt("BOOK_COUNT");
+            String bookIntroTitle 	= rset.getString("BOOK_INTRO_TITLE");
+            String bookIntroContent = rset.getString("BOOK_INTRO_CONTENT");
+            Book book = new Book(bookName, author, publisher, category, bookCount, bookIntroTitle, bookIntroContent);
+            bList.add(book);
+	    }
+		
+		rset.close();
+		pstmt.close();
+		conn.close();
+		
+		return bList;
+	}
+	
+	
+    // 대출 목록 조회
+    public List<BookLoan> getLendList(Connection conn, String memberId) throws SQLException {
+    	PreparedStatement pstmt = null;
+    	List<BookLoan> lList = new ArrayList<>();
+        
+        String sql = "SELECT l.BOOK_NO, l.LEND_DATE, l.RETURN_DATE, b.BOOK_NAME, b.AUTHOR "
+                   + "FROM LENDINFO_TBL l "
+                   + "JOIN BOOK_TBL b ON l.BOOK_NO = b.BOOK_NO "
+                   + "WHERE l.M_ID = ?";
+        
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, memberId);
+        ResultSet rset = pstmt.executeQuery();
+        		
+        while(rset.next()) {
+        	BookLoan bookloan = new BookLoan();
+        	bookloan.setBookNo(rset.getString("BOOK_NO"));
+        	bookloan.setBookName(rset.getString("BOOK_NAME"));
+        	bookloan.setAuthor(rset.getString("AUTHOR"));
+        	bookloan.setLendDate(rset.getDate("LEND_DATE"));
+        	bookloan.setReturnDate(rset.getDate("RETURN_DATE"));
+        	lList.add(bookloan);
+        }
+            
+        rset.close();
+		pstmt.close();
+		conn.close();
+        
+        return lList;
+    }
+
+    // 책 반납 (DELETE)
+    public int returnBook(Connection conn, String memberId, String bookNo) throws SQLException {
+    	PreparedStatement pstmt = null;
+    	String sql = "DELETE FROM LENDINFO_TBL WHERE M_ID=? AND BOOK_NO=?";
+    	
+        pstmt = conn.prepareStatement(sql);
+        pstmt.setString(1, memberId);
+        pstmt.setString(2, bookNo);
+        
+		pstmt.close();
+		conn.close();
+        
+        return pstmt.executeUpdate();
+        
+    }
 }
