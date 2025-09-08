@@ -128,6 +128,66 @@
             background-color: #45a049;
         }
         
+        .loan-button {
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+        }
+        
+        .loan-button:hover {
+            background-color: #1976D2;
+            transform: translateY(-1px);
+        }
+        
+        .loan-button.disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .loan-button.disabled:hover {
+            background-color: #ccc;
+            transform: none;
+        }
+        
+        .alert-message {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            z-index: 1000;
+            font-weight: bold;
+            animation: slideDown 0.3s ease;
+        }
+        
+        .alert-message.error {
+            background-color: #f44336;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0);
+            }
+        }
+        
         .no-book-message {
             text-align: center;
             color: #666;
@@ -193,6 +253,14 @@
 <body>
     <jsp:include page="../common/header.jsp"></jsp:include>
     
+    <!-- 알림 메시지 -->
+    <c:if test="${not empty alertMsg}">
+        <div class="alert-message ${alertMsg.contains('실패') or alertMsg.contains('오류') ? 'error' : ''}" id="alertMessage">
+            ${alertMsg}
+        </div>
+        <c:remove var="alertMsg" scope="session"/>
+    </c:if>
+    
     <div class="main-container">
         <div class="content-wrapper">
             <c:choose>
@@ -223,7 +291,29 @@
                                         <span class="info-label">카테고리:</span>
                                         <span class="info-value">${book.category}</span>
                                     </div>
+                                    <div class="info-row">
+                                        <span class="info-label">보유 수량:</span>
+                                        <span class="info-value">${book.bookCount}권</span>
+                                    </div>
                                 </div>
+                                
+                                <!-- 대출 버튼 -->
+                                <c:if test="${not empty memberId}">
+                                    <c:choose>
+                                        <c:when test="${book.bookCount > 0}">
+                                            <form action="${pageContext.request.contextPath}/book/loan" method="post" style="margin-top: 20px;">
+                                                <input type="hidden" name="bookNo" value="${bNo}">
+                                                <button type="submit" class="loan-button">대출하기</button>
+                                            </form>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <button class="loan-button disabled" disabled>재고 없음</button>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:if>
+                                <c:if test="${empty memberId}">
+                                    <button class="loan-button disabled" onclick="alert('로그인이 필요합니다.'); location.href='${pageContext.request.contextPath}/member/login';">대출하기 (로그인 필요)</button>
+                                </c:if>
                             </div>
                         </div>
                         
@@ -252,5 +342,21 @@
             </c:choose>
         </div>
     </div>
+    
+    <script>
+        // 알림 메시지 자동 사라지게 하기
+        window.onload = function() {
+            const alertMessage = document.getElementById('alertMessage');
+            if (alertMessage) {
+                setTimeout(function() {
+                    alertMessage.style.opacity = '0';
+                    alertMessage.style.transform = 'translateX(-50%) translateY(-20px)';
+                    setTimeout(function() {
+                        alertMessage.remove();
+                    }, 300);
+                }, 3000); // 3초 후 사라짐
+            }
+        }
+    </script>
 </body>
 </html>

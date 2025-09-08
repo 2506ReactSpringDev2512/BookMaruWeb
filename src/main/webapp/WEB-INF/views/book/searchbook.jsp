@@ -33,13 +33,16 @@
         padding: 20px;
         background-color: #f8f9fa;
         border-radius: 8px;
+        display: flex;
+    	flex-direction: column;
+    	align-items: center; 
     }
     .search-form {
         display: flex;
         justify-content: center;
         align-items: center;
         gap: 10px;
-        margin-top: 15px;
+        margion: 0px;
     }
     .search-form select {
         padding: 8px 12px;
@@ -53,6 +56,7 @@
         border-radius: 4px;
         width: 300px;
         font-size: 14px;
+        min-width: 300px;
     }
     .search-form input[type="submit"] {
         padding: 8px 20px;
@@ -171,7 +175,7 @@ window.onload = function() {
                 </div>
                 <div class="book-grid">
                     <c:forEach var="book" items="${bookList}">
-                        <div class="book-item">
+                        <div class="book-item" onclick="location.href='${pageContext.request.contextPath}/book/detail?bNo=${book.bookNo}'" style="cursor: pointer;">
                             <img src="${pageContext.request.contextPath}/BOOK-IMG/${book.bookNo}.jpg" 
                                  alt="책 이미지" 
                                  class="book-image"

@@ -158,4 +158,15 @@ public class BookService {
         return bList;
 	}
 
+	public int loanBook(String bNo, String memberId) {
+		int result = 0;
+        try {
+            Connection conn = bookTemplate.getConnection();
+            result = bDao.loanBook(bNo, memberId, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+	}
+
 }

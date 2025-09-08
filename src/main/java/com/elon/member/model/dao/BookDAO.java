@@ -248,4 +248,29 @@ public class BookDAO {
         pstmt.close();
         return bList;
     }
+
+	public int loanBook(String bNo, String memberId, Connection conn) throws SQLException {
+		PreparedStatement pstmt1 = null;
+		PreparedStatement pstmt2 = null;
+        int result = 0;
+        String updateQuery = "UPDATE BOOK_TBL SET BOOK_COUNT = BOOK_COUNT-1 " +
+                           "WHERE BOOK_NO = ? AND BOOK_COUNT > 0 " +
+                           "AND NOT EXISTS (SELECT 1 FROM LENDINFO_TBL WHERE M_ID = ? AND BOOK_NO = ?)";
+        pstmt1 = conn.prepareStatement(updateQuery);
+        pstmt1.setString(1, bNo);
+        pstmt1.setString(2, memberId);
+        pstmt1.setString(3, bNo);
+        int updateResult = pstmt1.executeUpdate();
+        if (updateResult != 0) {
+        	String insertQuery = "INSERT INTO LENDINFO_TBL VALUES(?,?,SYSDATE,SYSDATE+7)";
+        	pstmt2 = conn.prepareStatement(insertQuery);
+            pstmt2.setString(1, memberId);
+            pstmt2.setString(2, bNo);
+            result = pstmt2.executeUpdate();  
+            pstmt2.close();
+        }
+        pstmt1.close();
+        conn.close();
+        return result;
+	}
 }
