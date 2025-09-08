@@ -101,6 +101,7 @@
         border-radius: 4px;
         border: 1px solid #ddd;
         transition: filter 0.3s ease;
+        margin-bottom: 5px;
     }
     .book-item:hover .book-image {
         filter: blur(3px);
@@ -126,6 +127,11 @@
     }
     .book-item:hover .book-title-overlay {
         opacity: 1;
+    }
+    .book-name {
+        color: #34495e;
+        font-size: 14px;
+        margin-top: 5px;
     }
     .no-results {
         text-align: center;
@@ -160,7 +166,7 @@ window.onload = function() {
             <form action="<%=request.getContextPath()%>/book/searchbook" method="get" class="search-form">
                 <select name="searchType">
                     <option value="all" <%= "all".equals(searchType) ? "selected" : "" %>>전체</option>
-                    <option value="name" <%= "name".equals(searchType) ? "selected" : "" %>>서명</option>
+                    <option value="name" <%= "name".equals(searchType) ? "selected" : "" %>>제목</option>
                     <option value="author" <%= "author".equals(searchType) ? "selected" : "" %>>저자</option>
                 </select>
                 <input type="text" name="bookSearchTerm" value="<%= (bookSearchTerm != null ? bookSearchTerm : "") %>" placeholder="검색어를 입력하세요">
@@ -183,6 +189,7 @@ window.onload = function() {
                             <div class="book-title-overlay">
                                 ${book.bookIntroTitle}
                             </div>
+                            <div class="book-name">${book.bookName}</div>
                         </div>
                     </c:forEach>
                 </div>
@@ -194,5 +201,6 @@ window.onload = function() {
             </c:when>
         </c:choose>
     </div>
+    <jsp:include page="../common/footer.jsp"></jsp:include>
 </body>
 </html>

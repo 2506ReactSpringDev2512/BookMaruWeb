@@ -39,23 +39,11 @@ public class SearchBookServlet extends HttpServlet {
 			searchType = "all";
 		}
 		
-		// 검색어가 있는 경우에만 검색 실행
-		if (bookSearchTerm != null && !bookSearchTerm.trim().isEmpty()) {
-			BookService bService = new BookService();
-			List<Book> bookList = bService.searchBooks(searchType, bookSearchTerm.trim());
-			
-			request.setAttribute("bookList", bookList);
-			request.setAttribute("bookSearchTerm", bookSearchTerm);
-			request.setAttribute("searchType", searchType);
-		}
-		
+		BookService bService = new BookService();
+		List<Book> bookList = bService.searchBooks(searchType, bookSearchTerm.trim());
+		request.setAttribute("bookList", bookList);
+		request.setAttribute("bookSearchTerm", bookSearchTerm);
+		request.setAttribute("searchType", searchType);
 		request.getRequestDispatcher("/WEB-INF/views/book/searchbook.jsp").forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
 	}
 }
