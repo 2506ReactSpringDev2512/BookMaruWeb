@@ -186,10 +186,9 @@ public class BookService {
 	
 	// 대출 목록 조회
     public List<BookLoan> getLendList(String memberId) {
-        Connection conn = null;
         List<BookLoan> lList = null;
         try {
-            conn = bookTemplate.getConnection();
+        	Connection conn = bookTemplate.getConnection();
             lList = bDao.getLendList(conn, memberId);
         } catch(Exception e) {
             e.printStackTrace();
@@ -198,27 +197,15 @@ public class BookService {
     }
 
     // 책 반납
-    public boolean returnBook(String memberId, String bookNo) {
-        Connection conn = null;
-        boolean success = false;
+    public int returnBook(String memberId, String bookNo) {
+        int result = 0;
         try {
-            conn = bookTemplate.getConnection();
-            conn.setAutoCommit(false);
-            
-            int result = bDao.returnBook(conn, memberId, bookNo);
-            if(result > 0) {
-                conn.commit();
-                success = true;
-            } else {
-                conn.rollback();
-            }
+        	Connection conn = bookTemplate.getConnection();
+            result = bDao.returnBook(memberId, bookNo, conn);
         } catch(Exception e) {
-            try { 
-            	if(conn != null) conn.rollback(); 
-            } catch(Exception ex) {}
             e.printStackTrace();
         }
-        return success;
+        return result;
     }
 
 }

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>도서 관리 - 목록</title>
+<title>도서 관리 - 관리자</title>
 <style>
     body {
         font-family: Arial, sans-serif;

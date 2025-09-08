@@ -136,38 +136,49 @@ public class BookDAO {
 	}
 
 	public List<Book> searchBooks(String searchType, String searchTerm, Connection conn) throws SQLException {
-		PreparedStatement pstmt = null;
-        ResultSet rset = null;
-        List<Book> bList = new ArrayList<>();
-        String query = "";
-        
-        if ("name".equals(searchType)) {
-            query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ?";
-        } else if ("author".equals(searchType)) {
-            query = "SELECT * FROM BOOK_TBL WHERE AUTHOR LIKE ?";
-        } else {
-            query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ? OR AUTHOR LIKE ?";
-        }
-        
-        pstmt = conn.prepareStatement(query);
-        if ("all".equals(searchType)) {
-            pstmt.setString(1, "%" + searchTerm + "%");
-            pstmt.setString(2, "%" + searchTerm + "%");
-        } else {
-            pstmt.setString(1, "%" + searchTerm + "%");
-        }
-        
-        rset = pstmt.executeQuery();
-        while(rset.next()) {
-            String bookNo = rset.getString("BOOK_NO");
-            String bookIntroTitle = rset.getString("BOOK_INTRO_TITLE");
-            Book book = new Book(bookNo, bookIntroTitle);
-            bList.add(book);
-        }
-        rset.close();
-        pstmt.close();
-        conn.close();
-        return bList;
+	    PreparedStatement pstmt = null;
+	    ResultSet rset = null;
+	    List<Book> bList = new ArrayList<>();
+	    String query = "";
+	    
+	    // 검색어가 비어있거나 null인 경우 전체 조회
+	    boolean isEmptySearch = (searchTerm == null || searchTerm.trim().isEmpty());
+	    
+	    if (isEmptySearch) {
+	        query = "SELECT * FROM BOOK_TBL";
+	    } else if ("name".equals(searchType)) {
+	        query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ?";
+	    } else if ("author".equals(searchType)) {
+	        query = "SELECT * FROM BOOK_TBL WHERE AUTHOR LIKE ?";
+	    } else {
+	        query = "SELECT * FROM BOOK_TBL WHERE BOOK_NAME LIKE ? OR AUTHOR LIKE ?";
+	    }
+	    
+	    pstmt = conn.prepareStatement(query);
+	    
+	    // 검색어가 있는 경우에만 파라미터 설정
+	    if (!isEmptySearch) {
+	        if ("all".equals(searchType)) {
+	            pstmt.setString(1, "%" + searchTerm + "%");
+	            pstmt.setString(2, "%" + searchTerm + "%");
+	        } else {
+	            pstmt.setString(1, "%" + searchTerm + "%");
+	        }
+	    }
+	    
+	    rset = pstmt.executeQuery();
+	    while(rset.next()) {
+	        String bookNo = rset.getString("BOOK_NO");
+	        String bookName = rset.getString("BOOK_NAME");
+	        String bookIntroTitle = rset.getString("BOOK_INTRO_TITLE");
+	        Book book = new Book(bookNo, bookName, bookIntroTitle);
+	        bList.add(book);
+	    }
+	    
+	    rset.close();
+	    pstmt.close();
+	    conn.close();
+	    return bList;
 	}
 
     public List<Book> selectRecommendedBooks(Connection conn) throws SQLException {
@@ -347,28 +358,32 @@ public class BookDAO {
         	bookloan.setLendDate(rset.getDate("LEND_DATE"));
         	bookloan.setReturnDate(rset.getDate("RETURN_DATE"));
         	lList.add(bookloan);
-        }
-            
+        } 
         rset.close();
 		pstmt.close();
 		conn.close();
-        
         return lList;
     }
 
-    // 책 반납 (DELETE)
-    public int returnBook(Connection conn, String memberId, String bookNo) throws SQLException {
-    	PreparedStatement pstmt = null;
-    	String sql = "DELETE FROM LENDINFO_TBL WHERE M_ID=? AND BOOK_NO=?";
-    	
-        pstmt = conn.prepareStatement(sql);
-        pstmt.setString(1, memberId);
-        pstmt.setString(2, bookNo);
-        
-		pstmt.close();
-		conn.close();
-        
-        return pstmt.executeUpdate();
-        
+
+    public int returnBook(String memberId, String bookNo, Connection conn) throws SQLException {
+        PreparedStatement pstmt1 = null;
+        PreparedStatement pstmt2 = null;
+        int result = 0;
+        String deleteQuery = "DELETE FROM LENDINFO_TBL WHERE M_ID=? AND BOOK_NO=?";
+        pstmt1 = conn.prepareStatement(deleteQuery);
+        pstmt1.setString(1, memberId);
+        pstmt1.setString(2, bookNo);
+        int deleteResult = pstmt1.executeUpdate();
+        if (deleteResult != 0) {
+            String updateQuery = "UPDATE BOOK_TBL SET BOOK_COUNT = BOOK_COUNT + 1 WHERE BOOK_NO = ?";
+            pstmt2 = conn.prepareStatement(updateQuery);
+            pstmt2.setString(1, bookNo);
+            result = pstmt2.executeUpdate();
+            pstmt2.close();
+        }
+        pstmt1.close();
+        conn.close();
+        return result;
     }
 }

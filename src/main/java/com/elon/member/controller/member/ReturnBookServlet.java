@@ -31,14 +31,14 @@ public class ReturnBookServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
-        String memberId = (String) session.getAttribute("M_ID");
+        String memberId = (String) session.getAttribute("memberId");
         String bookNo = request.getParameter("bookNo");
         BookService bservice = new BookService();
 
-        boolean result = bservice.returnBook(memberId, bookNo);
+        int result = bservice.returnBook(memberId, bookNo);
 
-        if(result) {
-            response.sendRedirect("/WEB-INF/views/member/mypage.jsp"); // 성공하면 목록 갱신
+        if(result >0) {
+        	response.sendRedirect("/member/mypage");// 성공하면 목록 갱신
         } else {
             request.setAttribute("msg", "반납 실패");
             request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")

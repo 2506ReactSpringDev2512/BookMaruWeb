@@ -5,15 +5,10 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class BOOKTemplate {
-	private final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";
-	
-	// private final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
-	
-	private final String URL = "jdbc:oracle:thin:@192.168.60.246:1521:xe";
-	
+	private final String DRIVER_NAME = "oracle.jdbc.driver.OracleDriver";	
+	private final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 	private final String USER = "BOOK";
 	private final String PASSWORD = "BOOK";
-
 	private static BOOKTemplate instance;
 
 	private BOOKTemplate() {
