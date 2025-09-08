@@ -261,7 +261,7 @@
                 <c:choose>
                     <c:when test="${not empty advertiseBooks}">
                         <c:forEach var="book" items="${advertiseBooks}" end="4">
-                            <div class="ad-book-item">
+                            <div class="ad-book-item" onclick="location.href='${pageContext.request.contextPath}/book/detail?bNo=${book.bookNo}'">
                                 <img src="${pageContext.request.contextPath}/BOOK-IMG/${book.bookNo}.jpg" 
                                      alt="${book.bookName}" 
                                      class="ad-book-image"
@@ -303,7 +303,7 @@
             <c:choose>
                 <c:when test="${not empty newBooks}">
                     <c:forEach var="book" items="${newBooks}" end="3">
-                        <div class="book-item">
+                        <div class="book-item" onclick="location.href='${pageContext.request.contextPath}/book/detail?bNo=${book.bookNo}'">
                             <img src="${pageContext.request.contextPath}/BOOK-IMG/${book.bookNo}.jpg" 
                                  alt="${book.bookName}" 
                                  class="book-image"
@@ -342,7 +342,7 @@
             <c:choose>
                 <c:when test="${not empty recommendedBooks}">
                     <c:forEach var="book" items="${recommendedBooks}" end="3">
-                        <div class="book-item">
+                        <div class="book-item" onclick="location.href='${pageContext.request.contextPath}/book/detail?bNo=${book.bookNo}'">
                             <img src="${pageContext.request.contextPath}/BOOK-IMG/${book.bookNo}.jpg" 
                                  alt="${book.bookName}" 
                                  class="book-image"
