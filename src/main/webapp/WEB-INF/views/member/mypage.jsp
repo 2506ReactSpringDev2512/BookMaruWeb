@@ -255,6 +255,68 @@
             white-space: nowrap;
         }
 
+<<<<<<< HEAD
+        /* 반응형 대응 */
+        @media (max-width: 768px) {
+            .loan-books-grid {
+                gap: 20px;
+                padding: 0 15px;
+            }
+            
+            .loan-book-item {
+                width: 100%;
+                max-width: 500px;
+            }
+
+            .books-grid {
+                gap: 15px;
+                padding: 0 15px;
+            }
+
+            .book-item {
+                width: calc(50% - 7.5px);
+                height: 220px;
+            }
+
+            .book-image {
+                height: 150px;
+                object-fit: contain;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .loan-book-item {
+                flex-direction: column;
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+                gap: 15px;
+            }
+
+            .loan-book-left {
+                width: 100%;
+            }
+
+            .loan-book-image-container {
+                height: 300px;
+            }
+
+            .loan-book-info {
+                padding: 20px;
+            }
+
+            .book-item {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .books-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+=======
+>>>>>>> branch 'master' of https://github.com/2506ReactSpringDev2512/BookMaruWeb.git
     </style>
 </head>
 <body>

@@ -16,10 +16,12 @@
 
         /* Footer */
         #footer {
-            background: #2c3e50;
+        	max-width: 1300px;
+        	margin: 0 auto;
+            background: #d7d7d7;
             color: white;
             padding: 25px 0;
-            margin-top: auto;
+            margin-top: 5px;
             position: relative;
             padding-bottom: 30px;
         }
@@ -54,7 +56,7 @@
         }
 
         .footer-brand p {
-            color: #bdc3c7;
+            color: black;
             font-size: 14px;
             margin: 0;
             line-height: 1.4;
@@ -67,7 +69,7 @@
         }
 
         .footer-link {
-            color: #bdc3c7;
+            color: black;
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s ease;
@@ -82,7 +84,7 @@
             bottom: 8px;
             left: 50%;
             transform: translateX(-50%);
-            color: #95a5a6;
+            color: black;
             font-size: 12px;
             margin: 0;
         }

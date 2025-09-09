@@ -12,19 +12,14 @@ pageEncoding="UTF-8"%>
 <style>
 /* 헤더 전체 */
 .header {
-    background-color: #e1e1e1;
-    padding: 8px 0;
-    height: 55px;
-}
-
-.header-container {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 20px;
+	max-width: 1200px;
+	margin: 0 auto;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 100%;
+    background-color: #fff;
+    padding: 8px 20px;
+    height: 55px;
 }
 
 /* 로고 */
@@ -47,7 +42,7 @@ pageEncoding="UTF-8"%>
 .search-form input[type="text"] {
     width: 100%;
     padding: 10px 15px;
-    border: 1px solid #000;
+    border: 2px solid #2c3e50;
     border-radius: 25px;
     outline: none;
     font-size: 14px;
@@ -60,7 +55,7 @@ pageEncoding="UTF-8"%>
     border: none;
     cursor: pointer;
     font-size: 16px;
-    color: gray;
+    color: #4caf50;
 }
 
 /* 메뉴 */
@@ -159,46 +154,46 @@ document.addEventListener('DOMContentLoaded', function() {
 </head>
 <body>
 <header class="header">
-    <div class="header-container">
-        <!-- 로고 -->
-        <div class="logo">
-            <a href="/">
-                <img src="${pageContext.request.contextPath}/BOOK-IMG/logo.png" alt="로고">
-            </a>
-        </div>
 
-        <!-- 검색창 -->
-        <form class="search-form" action="${pageContext.request.contextPath}/book/searchbook" method="get">
-            <input type="hidden" name="searchType" value="all">
-            <input type="text" name="bookSearchTerm" placeholder="검색어 입력">
-            <button type="submit"><i class="fa fa-search"></i></button>
-        </form>
-
-        <!-- 메뉴 -->
-        <nav class="menu">
-            <a href="/book/recommendedbooks">추천도서</a>
-            <a href="/book/recentbooks">신간도서</a>
-            
-            <c:choose>
-                <c:when test="${not empty sessionScope.memberId}">
-                    <!-- 로그인된 상태 - 드롭다운 메뉴 -->
-                    <div class="user-menu">
-                        <img src="${pageContext.request.contextPath}/BOOK-IMG/mypage.png" alt="내 서재" class="user-icon">
-                        <div class="dropdown-menu">
-                            <a href="/member/mypage">내 서재</a>
-                            <a href="/member/logout">로그아웃</a>
-                        </div>
-                    </div>
-                </c:when>
-                <c:otherwise>
-                    <!-- 로그인되지 않은 상태 - 로그인 페이지로 이동 -->
-                    <a href="/member/login">
-                        <img src="${pageContext.request.contextPath}/BOOK-IMG/mypage.png" alt="로그인" class="user-icon">
-                    </a>
-                </c:otherwise>
-            </c:choose>
-        </nav>
+    <!-- 로고 -->
+    <div class="logo">
+        <a href="/">
+            <img src="${pageContext.request.contextPath}/BOOK-IMG/logo.png" alt="로고">
+        </a>
     </div>
+
+    <!-- 검색창 -->
+    <form class="search-form" action="${pageContext.request.contextPath}/book/searchbook" method="get">
+        <input type="hidden" name="searchType" value="all">
+        <input type="text" name="bookSearchTerm" placeholder="검색어 입력">
+        <button type="submit"><i class="fa fa-search"></i></button>
+    </form>
+
+    <!-- 메뉴 -->
+    <nav class="menu">
+        <a href="/book/recommendedbooks">추천도서</a>
+        <a href="/book/recentbooks">신간도서</a>
+        
+        <c:choose>
+            <c:when test="${not empty sessionScope.memberId}">
+                <!-- 로그인된 상태 - 드롭다운 메뉴 -->
+                <div class="user-menu">
+                    <img src="${pageContext.request.contextPath}/BOOK-IMG/mypage.png" alt="내 서재" class="user-icon">
+                    <div class="dropdown-menu">
+                        <a href="/member/mypage">내 서재</a>
+                        <a href="/member/logout">로그아웃</a>
+                    </div>
+                </div>
+            </c:when>
+            <c:otherwise>
+                <!-- 로그인되지 않은 상태 - 로그인 페이지로 이동 -->
+                <a href="/member/login">
+                    <img src="${pageContext.request.contextPath}/BOOK-IMG/mypage.png" alt="로그인" class="user-icon">
+                </a>
+            </c:otherwise>
+        </c:choose>
+    </nav>
+
 </header>
 </body>
 </html>
