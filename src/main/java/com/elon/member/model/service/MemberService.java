@@ -2,6 +2,7 @@ package com.elon.member.model.service;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.elon.member.common.BOOKTemplate;
 import com.elon.member.model.dao.MemberDAO;
@@ -73,4 +74,27 @@ public class MemberService {
 		}
 		return result;
 	}
+
+	public List<Member> selectAllUsers() {
+		List<Member> mList = null;
+		try {
+            Connection conn = bookTemplate.getConnection();
+            mList = mDao.selectAllUsers(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return mList;
+	}
+
+	public int adminpermissions(String memberId, String adminYN) {
+		int result = 0;
+		try {
+			Connection conn = bookTemplate.getConnection();
+			result = mDao.adminpermissions(memberId, adminYN, conn);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
 }

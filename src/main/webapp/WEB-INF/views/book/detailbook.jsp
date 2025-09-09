@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -195,59 +195,6 @@
             padding: 60px 20px;
         }
         
-        /* 반응형 디자인 */
-        @media (max-width: 768px) {
-            .book-detail-container {
-                padding: 20px;
-                margin: 0 10px;
-            }
-            
-            .book-detail-content {
-                flex-direction: column;
-                align-items: center;
-                gap: 20px;
-            }
-            
-            .book-detail-image {
-                width: 200px;
-                height: 280px;
-            }
-            
-            .book-detail-title {
-                font-size: 22px;
-                text-align: center;
-            }
-            
-            .info-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-            
-            .info-label {
-                width: auto;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .content-wrapper {
-                padding: 90px 10px 20px;
-            }
-            
-            .book-detail-container {
-                padding: 15px;
-                margin: 0 5px;
-            }
-            
-            .book-detail-image {
-                width: 180px;
-                height: 250px;
-            }
-            
-            .book-detail-title {
-                font-size: 20px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -310,9 +257,9 @@
                                             <button class="loan-button disabled" disabled>재고 없음</button>
                                         </c:otherwise>
                                     </c:choose>
-                                </c:if>
+                                </c:if> 
                                 <c:if test="${empty memberId}">
-                                    <button class="loan-button disabled" onclick="alert('로그인이 필요합니다.'); location.href='${pageContext.request.contextPath}/member/login';">대출하기 (로그인 필요)</button>
+                                    <button class="loan-button disabled" onclick="alert('로그인이 필요합니다.'); location.href='${pageContext.request.contextPath}/member/login';">대출하기<br>(로그인 필요)</button>
                                 </c:if>
                             </div>
                         </div>
@@ -327,15 +274,14 @@
                                 </c:if>
                             </div>
                         </c:if>
-                        
-                        <button class="back-button" onclick="history.back()">이전 페이지로</button>
+                        <button class="back-button" onclick="location.href='${pageContext.request.contextPath}/';">홈 페이지로</button>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="book-detail-container">
                         <div class="no-book-message">
                             <p>책 정보를 찾을 수 없습니다.</p>
-                            <button class="back-button" onclick="history.back()">이전 페이지로</button>
+                            <button class="back-button" onclick="location.href='${pageContext.request.contextPath}/';">홈 페이지로</button>
                         </div>
                     </div>
                 </c:otherwise>

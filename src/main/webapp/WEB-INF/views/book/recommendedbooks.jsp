@@ -9,9 +9,13 @@
 <style>
 /* 전체 컨테이너 */
 .main-container {
-    width: 90%;
-    margin: 0 auto;
-    padding: 20px 0;
+        max-width: 1200px;
+        margin: 0 auto;
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-top: 20px;
 }
 
 /* 섹션 제목 */
@@ -23,7 +27,7 @@
 /* 책 그리드 */
 .books-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 가로 4개 */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
 }
 
@@ -79,12 +83,7 @@
     border-radius: 8px;
 }
 
-/* 스크롤 가능하게 하기 위해 전체 높이 제한 가능 */
-.content-wrapper {
-    max-height: 80vh; /* 화면 높이 기준 */
-    overflow-y: auto; /* 세로 스크롤 */
-    padding-right: 10px; /* 스크롤 시 공간 확보 */
-}
+
 </style>
 </head>
 <body>

@@ -46,9 +46,27 @@
             margin-bottom: 30px;
         }
 
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 0px;
+            margin-left: 50px;
+        }
+
+        .logo-link img {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-link:hover img {
+            opacity: 0.8;
+        }
+
         .login-title {
             font-size: 28px;
             font-weight: bold;
+            margin-top: -25px;
             margin-bottom: 8px;
             color: #333;
         }
@@ -217,51 +235,30 @@
             color: white;
             text-decoration: none;
         }
+        
+        .forgot-links {
+            text-align: center;
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .forgot-links a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s ease;
+        }
+
+        .forgot-links a:hover {
+            color: #4f46e5;
+        }
 
         .divider-text {
             color: #ccc;
-            margin: 0 10px;
             font-size: 12px;
-        }
-
-
-        /* 모바일 반응형 */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 20px;
-            }
-            
-            .login-container {
-                padding: 30px 20px;
-                max-width: 350px;
-            }
-            
-            .link-buttons {
-                flex-direction: column;
-                gap: 8px;
-            }
-
-            .step {
-                font-size: 12px;
-            }
-
-            .step-divider {
-                width: 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 25px 15px;
-            }
-            
-            .login-title {
-                font-size: 24px;
-            }
-            
-            .login-subtitle {
-                font-size: 14px;
-            }
         }
     </style>
 </head>
@@ -269,6 +266,9 @@
     <div class="main-content">
         <div class="login-container">
             <div class="login-header">
+                <a href="<c:url value='/'/> " class="logo-link">
+                    <img src="<c:url value='/BOOK-IMG/logo2.png'/>" alt="BookWeb 로고">
+                </a>
                 <h2 class="login-title">비밀번호 찾기</h2>
                 <p class="login-subtitle">본인 확인 후 새 비밀번호를 설정하세요</p>
             </div>
@@ -306,11 +306,13 @@
                 
                 <div class="link-section">
                     <p>다른 옵션을 원하시나요?</p>
-                    <div class="link-buttons">
-                        <a href="<c:url value='/member/login'/>" class="link-btn">로그인</a>
-                        <span class="divider-text">|</span>
-                        <a href="<c:url value='/member/find-id'/>" class="link-btn">아이디 찾기</a>
-                    </div>
+                    <div class="forgot-links">
+		                <a href="<c:url value='/member/login'/>">로그인</a>
+		                <span class="divider-text">|</span>
+		                <a href="<c:url value='/member/find-id'/>">아이디 찾기</a>
+		            </div>
+                    
+
                 </div>
             </c:if>
             <c:if test="${not empty verified}">
@@ -346,7 +348,6 @@
             </c:if>
         </div>
     </div>
-
     <script>
         // 비밀번호 일치 검증
         function validatePassword() {
@@ -357,11 +358,8 @@
                 alert('비밀번호가 일치하지 않습니다. 다시 확인해주세요.');
                 return false;
             }
-            
-            
             return true;
         }
-
     </script>
 </body>
 </html>

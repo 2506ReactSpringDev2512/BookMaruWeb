@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.elon.member.model.vo.Member;
 
@@ -95,5 +97,39 @@ public class MemberDAO {
 		pstmt.close();
 		conn.close();
 		return result;
+	}
+
+	public List<Member> selectAllUsers(Connection conn) throws SQLException {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+        List<Member> mList = new ArrayList<>();
+        String query = "SELECT MEMBER_ID, MEMBER_NAME, MEMBER_PHONE, MEMBER_AGE, ADMIN_YN FROM MEMBER_TBL WHERE ADMIN_YN != 'ADMIN'";
+        pstmt = conn.prepareStatement(query);
+        rset = pstmt.executeQuery();
+        while(rset.next()) {
+            String memberId   = rset.getString("MEMBER_ID");
+            String memberName   = rset.getString("MEMBER_NAME");
+            String phone = rset.getString("MEMBER_PHONE");
+            int age = rset.getInt("MEMBER_AGE");
+            String adminYN = rset.getString("ADMIN_YN");
+            Member member = new Member(memberId, memberName, phone, age, adminYN);
+            mList.add(member);
+        }
+        rset.close();
+        pstmt.close();
+        return mList;
+	}
+
+	public int adminpermissions(String memberId, String adminYN, Connection conn) throws SQLException {	
+		PreparedStatement pstmt = null;
+        int result = 0;
+        String query = "UPDATE MEMBER_TBL SET ADMIN_YN = ? WHERE MEMBER_ID = ?";
+        pstmt = conn.prepareStatement(query);
+        pstmt.setString(1, adminYN);
+        pstmt.setString(2, memberId);
+        result = pstmt.executeUpdate();
+        pstmt.close();
+        conn.close();
+        return result;
 	}
 }

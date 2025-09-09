@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -202,51 +202,6 @@
         }
         
         
-        /* 반응형 디자인 */
-        @media (max-width: 768px) {
-            .ad-title {
-                font-size: 48px;
-            }
-            
-            .advertisement-section {
-                height: 300px;
-            }
-            
-            .books-grid {
-                gap: 15px;
-                padding: 0 15px;
-            }
-            
-            .book-item {
-                width: calc(50% - 7.5px);
-                height: 220px;
-            }
-            
-            .book-image {
-                height: 150px;
-                object-fit: contain;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .ad-title {
-                font-size: 32px;
-            }
-            
-            .advertisement-section {
-                height: 200px;
-            }
-            
-            .book-item {
-                width: 100%;
-                max-width: 300px;
-            }
-            
-            .books-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
     </style>
 </head>
 <body>

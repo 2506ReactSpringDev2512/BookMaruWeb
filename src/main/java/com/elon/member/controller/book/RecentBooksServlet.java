@@ -14,14 +14,14 @@ import com.elon.member.model.vo.Book;
 /**
  * Servlet implementation class AdvertiseBooksServlet
  */
-@WebServlet("/book/advertisebooks")
-public class AdvertiseBooksServlet extends HttpServlet {
+@WebServlet("/book/recentbooks")
+public class RecentBooksServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdvertiseBooksServlet() {
+    public RecentBooksServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +34,7 @@ public class AdvertiseBooksServlet extends HttpServlet {
 		List<Book> newBooks = bService.selectNewBooks();
 		
 		request.setAttribute("newBooks", newBooks);
-		request.getRequestDispatcher("/WEB-INF/views/book/advertisebooks.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/book/recentbooks.jsp").forward(request, response);
 	}
 
 

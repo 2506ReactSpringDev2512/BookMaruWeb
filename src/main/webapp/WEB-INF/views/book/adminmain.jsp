@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -65,6 +65,7 @@
             grid-template-columns: 1fr;
         }
 
+
         /* Admin Button Styles */
         .admin-button {
             width: 100%;
@@ -95,61 +96,26 @@
         }
 
         /* Back Link */
-        .back-link {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .back-link a {
-            color: #666;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .back-link a:hover {
-            color: #4f46e5;
-            text-decoration: underline;
-        }
-
-        /* 모바일 반응형 */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 20px;
-            }
-            
-            .admin-container {
-                padding: 30px 20px;
-                max-width: 400px;
-            }
-            
-            .button-grid {
-                gap: 15px;
-            }
-            
-            .admin-button {
-                height: 55px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .admin-container {
-                padding: 25px 15px;
-            }
-            
-            .admin-title {
-                font-size: 24px;
-            }
-            
-            .admin-subtitle {
-                font-size: 14px;
-            }
-            
-            .admin-button {
-                height: 50px;
-            }
-        }
+	    .back-link {
+	        text-align: center;
+	        margin-top: 15px;
+	    }
+	
+	    .back-link p {
+	        color: #666;
+	        font-size: 14px;
+	    }
+	
+	    .back-link a {
+	        color: #6b7280;
+	        text-decoration: none;
+	        font-weight: bold;
+	    }
+	
+	    .back-link a:hover {
+	        text-decoration: underline;
+	    }
+	    
     </style>
 </head>
 <body>
@@ -169,6 +135,12 @@
                     책 수정
                 </button>
                 
+                <!-- adminYN이 Y가 아닌 경우에만 권한부여 버튼 표시 -->
+                <c:if test="${sessionScope.adminYN != 'Y'}">
+                    <button type="button" class="admin-button" onclick="location.href='<c:url value="/admin/permissions"/>'">
+                        권한 부여
+                    </button>
+                </c:if>
             </div>
             
             <div class="back-link">

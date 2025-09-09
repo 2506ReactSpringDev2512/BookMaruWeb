@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -255,6 +255,7 @@
             white-space: nowrap;
         }
 
+<<<<<<< HEAD
         /* 반응형 대응 */
         @media (max-width: 768px) {
             .loan-books-grid {
@@ -314,6 +315,8 @@
                 align-items: center;
             }
         }
+=======
+>>>>>>> branch 'master' of https://github.com/2506ReactSpringDev2512/BookMaruWeb.git
     </style>
 </head>
 <body>
