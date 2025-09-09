@@ -130,29 +130,28 @@
         }
 
         /* Button Styles */
-        .login-button {
-            width: 100%;
-            height: 50px;
-            background: linear-gradient(135deg, #4f46e5, #6366f1);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 25px;
-        }
-
-        .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
-        }
-
-        .login-button:active {
-            transform: translateY(0);
-        }
-
+		.login-button {
+		width: 100%;
+		height: 50px;
+		background: linear-gradient(135deg, #4caf50, #66bb6a);
+		color: #2c3e50;
+		border: none;
+		border-radius: 8px;
+		font-size: 16px;
+		font-weight: bold;
+		cursor: pointer;
+		transition: all 0.3s ease;
+		margin-bottom: 25px;
+		}
+		
+		.login-button:hover {
+		transform: translateY(-2px);
+		box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+		}
+		
+		.login-button:active {
+		transform: translateY(0);
+		}
         /* Link Styles */
         .signup-link {
             text-align: center;
@@ -165,7 +164,7 @@
         }
 
         .signup-link a {
-            color: #4f46e5;
+            color: #4caf50;
             text-decoration: none;
             font-weight: bold;
         }
@@ -191,7 +190,7 @@
         }
 
         .forgot-links a:hover {
-            color: #4f46e5;
+            color: #4caf50;
         }
 
         .divider-text {

@@ -104,9 +104,9 @@
         }
 
         .step.active .step-number {
-            background: #4f46e5;
+            background: #4caf50;
             color: white;
-            border-color: #4f46e5;
+            border-color: #4caf50;
         }
 
         .step.completed .step-number {
@@ -148,7 +148,7 @@
 
         .form-input:focus {
             outline: none;
-            border-color: #4f46e5;
+            border-color: #4caf50;
             background-color: #f9fafb;
         }
 
@@ -158,27 +158,27 @@
 
         /* Button Styles */
         .login-button {
-            width: 100%;
-            height: 50px;
-            background: linear-gradient(135deg, #4f46e5, #6366f1);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-bottom: 25px;
-        }
-
-        .login-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(79, 70, 229, 0.3);
-        }
-
-        .login-button:active {
-            transform: translateY(0);
-        }
+			width: 100%;
+			height: 50px;
+			background: linear-gradient(135deg, #4caf50, #66bb6a);
+			color: #2c3e50;
+			border: none;
+			border-radius: 8px;
+			font-size: 16px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: all 0.3s ease;
+			margin-bottom: 25px;
+		}
+		
+		.login-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+		}
+		
+		.login-button:active {
+			transform: translateY(0);
+		}
 
         /* Success Box Styles */
         .success-box {
@@ -222,16 +222,16 @@
 
         .link-btn {
             padding: 8px 16px;
-            color: #4f46e5;
+            color: #4caf50;
             text-decoration: none;
             font-size: 14px;
-            border: 1px solid #4f46e5;
+            border: 1px solid #4caf50;
             border-radius: 6px;
             transition: all 0.3s ease;
         }
 
         .link-btn:hover {
-            background-color: #4f46e5;
+            background-color: #4caf50;
             color: white;
             text-decoration: none;
         }
@@ -253,7 +253,7 @@
         }
 
         .forgot-links a:hover {
-            color: #4f46e5;
+            color: #4caf50;
         }
 
         .divider-text {
