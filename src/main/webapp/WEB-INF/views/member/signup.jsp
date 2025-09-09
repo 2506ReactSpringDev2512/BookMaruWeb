@@ -51,9 +51,27 @@
             margin-bottom: 30px;
         }
 
+        .logo-link {
+            display: inline-block;
+            margin-bottom: 0px;
+            margin-left: 50px;
+        }
+
+        .logo-link img {
+            height: 80px;
+            width: auto;
+            object-fit: contain;
+            transition: opacity 0.3s ease;
+        }
+
+        .logo-link:hover img {
+            opacity: 0.8;
+        }
+
         .login-title {
             font-size: 28px;
             font-weight: bold;
+            margin-top: -25px;
             margin-bottom: 8px;
             color: #333;
         }
@@ -212,48 +230,15 @@
         .signup-link a:hover {
             text-decoration: underline;
         }
-
-
-        /* 모바일 반응형 */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 20px;
-            }
-            
-            .login-container {
-                padding: 30px 20px;
-                max-width: 350px;
-            }
-            
-            .signup-container {
-                max-width: 400px;
-            }
-            
-            .radio-group {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .login-container {
-                padding: 25px 15px;
-            }
-            
-            .login-title {
-                font-size: 24px;
-            }
-            
-            .login-subtitle {
-                font-size: 14px;
-            }
-        }
     </style>
 </head>
 <body>
     <div class="main-content">
         <div class="login-container signup-container">
             <div class="login-header">
+                <a href="<c:url value='/'/> " class="logo-link">
+                    <img src="<c:url value='/BOOK-IMG/logo2.png'/>" alt="BookWeb 로고">
+                </a>
                 <h2 class="login-title">회원가입</h2>
                 <p class="login-subtitle">새로운 독서 여정을 시작하세요</p>
             </div>
