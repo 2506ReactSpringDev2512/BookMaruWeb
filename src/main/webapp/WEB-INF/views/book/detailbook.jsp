@@ -310,9 +310,9 @@
                                             <button class="loan-button disabled" disabled>재고 없음</button>
                                         </c:otherwise>
                                     </c:choose>
-                                </c:if>
+                                </c:if> 
                                 <c:if test="${empty memberId}">
-                                    <button class="loan-button disabled" onclick="alert('로그인이 필요합니다.'); location.href='${pageContext.request.contextPath}/member/login';">대출하기 (로그인 필요)</button>
+                                    <button class="loan-button disabled" onclick="alert('로그인이 필요합니다.'); location.href='${pageContext.request.contextPath}/member/login';">대출하기<br>(로그인 필요)</button>
                                 </c:if>
                             </div>
                         </div>
@@ -327,15 +327,14 @@
                                 </c:if>
                             </div>
                         </c:if>
-                        
-                        <button class="back-button" onclick="history.back()">이전 페이지로</button>
+                        <button class="back-button" onclick="location.href='${pageContext.request.contextPath}/';">홈 페이지로</button>
                     </div>
                 </c:when>
                 <c:otherwise>
                     <div class="book-detail-container">
                         <div class="no-book-message">
                             <p>책 정보를 찾을 수 없습니다.</p>
-                            <button class="back-button" onclick="history.back()">이전 페이지로</button>
+                            <button class="back-button" onclick="location.href='${pageContext.request.contextPath}/';">홈 페이지로</button>
                         </div>
                     </div>
                 </c:otherwise>
