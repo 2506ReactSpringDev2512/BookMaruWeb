@@ -106,8 +106,8 @@
 
             <div class="footer-links">
                 <a href="/book/searchbook?searchType=all&bookSearchTerm=" class="footer-link">도서 검색</a>
-                <a href="#" class="footer-link">신간 안내</a>
-                <a href="#" class="footer-link">추천 도서</a>
+                <a href="/book/recentbooks" class="footer-link">신간 안내</a>
+                <a href="/book/recommendedbooks" class="footer-link">추천 도서</a>
                 <a href="/member/signup" class="footer-link">회원 가입</a>
             </div>
             

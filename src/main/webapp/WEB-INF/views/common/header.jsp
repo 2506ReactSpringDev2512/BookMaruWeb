@@ -169,8 +169,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     <!-- 메뉴 -->
     <nav class="menu">
-        <a href="###">추천도서</a>
-        <a href="###">신간도서</a>
+        <a href="/book/recommendedbooks">추천도서</a>
+        <a href="/book/recentbooks">신간도서</a>
         
         <c:choose>
             <c:when test="${not empty sessionScope.memberId}">
