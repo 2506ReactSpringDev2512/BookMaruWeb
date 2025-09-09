@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -163,42 +163,6 @@
             color: #ccc;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-
-            .page-title {
-                font-size: 24px;
-            }
-
-            .member-table th,
-            .member-table td {
-                padding: 10px 8px;
-                font-size: 14px;
-            }
-
-            .nav-btn {
-                display: block;
-                margin: 5px 0;
-                width: 100%;
-                max-width: 200px;
-            }
-
-            .nav-links {
-                padding: 15px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .member-table th:nth-child(3),
-            .member-table td:nth-child(3),
-            .member-table th:nth-child(4),
-            .member-table td:nth-child(4) {
-                display: none;
-            }
-        }
     </style>
 </head>
 <body>

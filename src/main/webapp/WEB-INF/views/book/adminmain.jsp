@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>    
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -116,44 +116,6 @@
 	        text-decoration: underline;
 	    }
 	    
-        /* 모바일 반응형 */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 20px;
-            }
-            
-            .admin-container {
-                padding: 30px 20px;
-                max-width: 400px;
-            }
-            
-            .button-grid {
-                gap: 15px;
-            }
-            
-            .admin-button {
-                height: 55px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .admin-container {
-                padding: 25px 15px;
-            }
-            
-            .admin-title {
-                font-size: 24px;
-            }
-            
-            .admin-subtitle {
-                font-size: 14px;
-            }
-            
-            .admin-button {
-                height: 50px;
-            }
-        }
     </style>
 </head>
 <body>

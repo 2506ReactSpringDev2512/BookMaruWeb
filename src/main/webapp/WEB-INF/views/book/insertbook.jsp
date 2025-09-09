@@ -238,36 +238,6 @@
             text-decoration: underline;
         }
 
-        /* 모바일 반응형 */
-        @media (max-width: 768px) {
-            .main-content {
-                padding: 20px;
-            }
-            
-            .form-container {
-                padding: 30px 20px;
-                max-width: 450px;
-            }
-            
-            .radio-group {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .form-container {
-                padding: 25px 15px;
-            }
-            
-            .form-title {
-                font-size: 24px;
-            }
-            
-            .form-subtitle {
-                font-size: 14px;
-            }
-        }
     </style>
 </head>
 <body>

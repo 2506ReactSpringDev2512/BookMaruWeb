@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -255,65 +255,6 @@
             white-space: nowrap;
         }
 
-        /* 반응형 대응 */
-        @media (max-width: 768px) {
-            .loan-books-grid {
-                gap: 20px;
-                padding: 0 15px;
-            }
-            
-            .loan-book-item {
-                width: 100%;
-                max-width: 500px;
-            }
-
-            .books-grid {
-                gap: 15px;
-                padding: 0 15px;
-            }
-
-            .book-item {
-                width: calc(50% - 7.5px);
-                height: 220px;
-            }
-
-            .book-image {
-                height: 150px;
-                object-fit: contain;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .loan-book-item {
-                flex-direction: column;
-                width: 100%;
-                max-width: 300px;
-                margin: 0 auto;
-                gap: 15px;
-            }
-
-            .loan-book-left {
-                width: 100%;
-            }
-
-            .loan-book-image-container {
-                height: 300px;
-            }
-
-            .loan-book-info {
-                padding: 20px;
-            }
-
-            .book-item {
-                width: 100%;
-                max-width: 300px;
-            }
-
-            .books-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-        }
     </style>
 </head>
 <body>

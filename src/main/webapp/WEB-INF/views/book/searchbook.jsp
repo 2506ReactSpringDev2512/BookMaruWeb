@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%
-	// SearchServlet에서 request.setAttribute로 전달됨
-	String bookSearchTerm = (String) request.getAttribute("bookSearchTerm");
-	String searchType = (String) request.getAttribute("searchType");
-	if (searchType == null) searchType = "all";
-%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="searchType" value="${empty searchType ? 'all' : searchType}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -163,13 +158,13 @@ window.onload = function() {
     <div class="container">
         <div class="search-section">
             <h1>책 검색</h1>
-            <form action="<%=request.getContextPath()%>/book/searchbook" method="get" class="search-form">
+            <form action="${pageContext.request.contextPath}/book/searchbook" method="get" class="search-form">
                 <select name="searchType">
-                    <option value="all" <%= "all".equals(searchType) ? "selected" : "" %>>전체</option>
-                    <option value="name" <%= "name".equals(searchType) ? "selected" : "" %>>제목</option>
-                    <option value="author" <%= "author".equals(searchType) ? "selected" : "" %>>저자</option>
+                    <option value="all" <c:if test="${searchType == 'all'}">selected</c:if>>전체</option>
+                    <option value="name" <c:if test="${searchType == 'name'}">selected</c:if>>제목</option>
+                    <option value="author" <c:if test="${searchType == 'author'}">selected</c:if>>저자</option>
                 </select>
-                <input type="text" name="bookSearchTerm" value="<%= (bookSearchTerm != null ? bookSearchTerm : "") %>" placeholder="검색어를 입력하세요">
+                <input type="text" name="bookSearchTerm" value="${bookSearchTerm}" placeholder="검색어를 입력하세요">
                 <input type="submit" value="검색">
             </form>
         </div>
