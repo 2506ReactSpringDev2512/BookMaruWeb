@@ -34,10 +34,10 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("memberId", member.getMemberId());
 			session.setAttribute("memberName", member.getMemberName());
 			session.setAttribute("adminYN", member.getAdmin());
-			if("Y".equals(member.getAdmin())) {
-				response.sendRedirect("/admin/main");
-			} else {
+			if("N".equals(member.getAdmin())) {
 				response.sendRedirect("/");
+			} else {
+				response.sendRedirect("/admin/main");
 			}
 		}else {
 			request.setAttribute("errorMsg", "등록된 회원 정보가 없습니다.");

@@ -65,6 +65,7 @@
             grid-template-columns: 1fr;
         }
 
+
         /* Admin Button Styles */
         .admin-button {
             width: 100%;
@@ -95,23 +96,26 @@
         }
 
         /* Back Link */
-        .back-link {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .back-link a {
-            color: #666;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s ease;
-        }
-
-        .back-link a:hover {
-            color: #4f46e5;
-            text-decoration: underline;
-        }
-
+	    .back-link {
+	        text-align: center;
+	        margin-top: 15px;
+	    }
+	
+	    .back-link p {
+	        color: #666;
+	        font-size: 14px;
+	    }
+	
+	    .back-link a {
+	        color: #6b7280;
+	        text-decoration: none;
+	        font-weight: bold;
+	    }
+	
+	    .back-link a:hover {
+	        text-decoration: underline;
+	    }
+	    
         /* 모바일 반응형 */
         @media (max-width: 768px) {
             .main-content {
@@ -169,6 +173,12 @@
                     책 수정
                 </button>
                 
+                <!-- adminYN이 Y가 아닌 경우에만 권한부여 버튼 표시 -->
+                <c:if test="${sessionScope.adminYN != 'Y'}">
+                    <button type="button" class="admin-button" onclick="location.href='<c:url value="/admin/permissions"/>'">
+                        권한 부여
+                    </button>
+                </c:if>
             </div>
             
             <div class="back-link">
