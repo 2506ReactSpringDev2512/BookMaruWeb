@@ -113,7 +113,7 @@
                 <a href="/member/signup" class="footer-link">회원 가입</a>
             </div>
             
-            <p class="footer-copyright">&copy; 2024 BOOKMARU. All rights reserved.</p>
+            <p class="footer-copyright">&copy; 2025 BOOKMARU. All rights reserved.</p>
         </div>
     </footer>
 </body>
