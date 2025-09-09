@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.List;
@@ -31,6 +32,12 @@ public class AdminPermissionsServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String adminYN = (String) session.getAttribute("adminYN");
+		if(!"Y".equals(adminYN) && !"ADMIN".equals(adminYN)) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		MemberService mService = new MemberService();
 		List<Member> mList = mService.selectAllUsers();
 		request.setAttribute("mList", mList);
@@ -41,6 +48,12 @@ public class AdminPermissionsServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String sessionAdminYN = (String) session.getAttribute("adminYN");
+		if(!"Y".equals(sessionAdminYN) && !"ADMIN".equals(sessionAdminYN)) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		String memberId = request.getParameter("memberId");
 		String adminYN = request.getParameter("adminYN");
 		if (adminYN.equals("Y")) {

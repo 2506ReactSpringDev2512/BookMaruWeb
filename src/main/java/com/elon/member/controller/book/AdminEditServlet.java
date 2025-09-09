@@ -6,6 +6,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
@@ -33,6 +34,12 @@ public class AdminEditServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String adminYN = (String) session.getAttribute("adminYN");
+		if(!"Y".equals(adminYN) && !"ADMIN".equals(adminYN)) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		String bNo = (String) request.getAttribute("bNo");
 		if (bNo == null) {
 			bNo = request.getParameter("bNo");
@@ -44,7 +51,7 @@ public class AdminEditServlet extends HttpServlet {
 			request.setAttribute("bList", bList);
 			request.getRequestDispatcher("/WEB-INF/views/book/adminedit.jsp").forward(request, response);
 		} else {
-			response.sendRedirect(request.getContextPath() + "/admin/list");
+			response.sendRedirect("/admin/list");
 		}
 	}
 
@@ -52,6 +59,12 @@ public class AdminEditServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String adminYN = (String) session.getAttribute("adminYN");
+		if(!"Y".equals(adminYN) && !"ADMIN".equals(adminYN)) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		// 파일 파트 먼저 가져오기
 		Part filePart = request.getPart("bookImage");
 		

@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 
 import com.elon.member.model.service.BookService;
@@ -27,6 +28,12 @@ public class AdminAdvertiseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String adminYN = (String) session.getAttribute("adminYN");
+		if(!"Y".equals(adminYN) && !"ADMIN".equals(adminYN)) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		String bNo = request.getParameter("bNo");
 		String advertiseYN = request.getParameter("advertiseYN");
 		if (advertiseYN.equals("Y")) {

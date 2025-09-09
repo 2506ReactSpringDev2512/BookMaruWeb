@@ -32,11 +32,7 @@ public class RecommendedBooksServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		BookService bService = new BookService();
 		List<Book> recommendedBooks = bService.selectRecommendedBooks();
-		
 		request.setAttribute("recommendedBooks", recommendedBooks);
 		request.getRequestDispatcher("/WEB-INF/views/book/recommendedbooks.jsp").forward(request, response);
 	}
-
-
-
 }

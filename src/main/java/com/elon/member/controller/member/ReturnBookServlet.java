@@ -36,7 +36,6 @@ public class ReturnBookServlet extends HttpServlet {
         BookService bservice = new BookService();
 
         int result = bservice.returnBook(memberId, bookNo);
-
         if(result >0) {
         	response.sendRedirect("/member/mypage");// 성공하면 목록 갱신
         } else {
@@ -44,8 +43,5 @@ public class ReturnBookServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/views/common/error.jsp")
             .forward(request, response);
         }
-    
-
 	}
-
 }

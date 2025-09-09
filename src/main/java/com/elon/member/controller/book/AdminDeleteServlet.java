@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 
@@ -19,6 +20,12 @@ public class AdminDeleteServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        String adminYN = (String) session.getAttribute("adminYN");
+        if(!"Y".equals(adminYN) && !"ADMIN".equals(adminYN)) {
+            response.sendRedirect("/member/login");
+            return;
+        }
         String bNo = request.getParameter("bNo");
         
         if (bNo != null && !bNo.trim().isEmpty()) {

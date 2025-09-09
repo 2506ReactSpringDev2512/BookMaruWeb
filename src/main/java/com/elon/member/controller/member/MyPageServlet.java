@@ -35,6 +35,10 @@ public class MyPageServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
+		if(memberId == null || memberId.trim().isEmpty()) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 	    BookService bService = new BookService();
 	    List<BookLoan> lendList = bService.getLendList(memberId);
 	    List<Book> recommendedBooks = bService.selectRecommendedBooks();

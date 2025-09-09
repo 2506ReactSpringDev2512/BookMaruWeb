@@ -7,35 +7,41 @@
 <meta charset="UTF-8">
 <title>신간도서</title>
 <style>
-/* 전체 컨테이너 */
-.main-container {
-    width: 90%;
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+.container {
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 0;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-top: 20px;
 }
 
-/* 섹션 제목 */
-.section-title {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-/* 책 그리드 */
-.books-grid {
+.book-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* 가로 4개 */
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
+    padding: 20px;
 }
 
 /* 책 아이템 */
 .book-item {
-    cursor: pointer;
-    text-align: center;
-    border: 1px solid #ddd;
+    position: relative;
+    border: 2px solid #ddd;
     border-radius: 8px;
-    padding: 10px;
-    transition: transform 0.2s, box-shadow 0.2s;
-    background-color: #fff;
+    padding: 15px;
+    text-align: center;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 250px;
+    overflow: hidden;
 }
 
 .book-item:hover {
@@ -45,21 +51,21 @@
 
 /* 책 이미지 */
 .book-image {
-    width: 100%;
-    height: 220px;
+    width: 150px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 5px;
-}
-
-/* 책 정보 */
-.book-info {
-    margin-top: 10px;
-}
-
-.book-title {
-    font-weight: bold;
-    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
     margin-bottom: 5px;
+}
+
+
+
+
+.book-name {
+    color: #34495e;
+    font-size: 14px;
+    margin-top: 5px;
 }
 
 .book-author, .book-publisher {
@@ -67,23 +73,11 @@
     color: #555;
 }
 
-/* placeholder */
-.book-placeholder {
-    height: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #999;
-    font-size: 16px;
-    border: 1px dashed #ccc;
-    border-radius: 8px;
-}
-
-/* 스크롤 가능하게 하기 위해 전체 높이 제한 가능 */
-.content-wrapper {
-    max-height: 80vh; /* 화면 높이 기준 */
-    overflow-y: auto; /* 세로 스크롤 */
-    padding-right: 10px; /* 스크롤 시 공간 확보 */
+.no-results {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    margin: 50px 0;
 }
 </style>
 </head>
@@ -91,37 +85,29 @@
 
 <jsp:include page="../common/header.jsp"></jsp:include>
 
-<div class="main-container">
-    <div class="section-title">
-        <h2>신간도서</h2>
-    </div>
-
-    <div class="content-wrapper">
-        <div class="books-grid">
-            <c:choose>
-                <c:when test="${not empty newBooks}">
-                    <c:forEach var="book" items="${newBooks}">
-                        <div class="book-item" onclick="location.href='${pageContext.request.contextPath}/book/detail?bNo=${book.bookNo}'">
-                            <img src="${pageContext.request.contextPath}/BOOK-IMG/${book.bookNo}.jpg" 
-                                 alt="${book.bookName}" 
-                                 class="book-image"
-                                 onerror="this.src='${pageContext.request.contextPath}/BOOK-IMG/default.jpg'">
-                            <div class="book-info">
-                                <p class="book-title">${book.bookName}</p>
-                            </div>
-                        </div>
-                    </c:forEach>
-                </c:when>
-                <c:otherwise>
-                    <!-- 책이 없을 경우 placeholder 4개 표시 -->
-                    <div class="book-placeholder">신간도서 준비중</div>
-                    <div class="book-placeholder">신간도서 준비중</div>
-                    <div class="book-placeholder">신간도서 준비중</div>
-                    <div class="book-placeholder">신간도서 준비중</div>
-                </c:otherwise>
-            </c:choose>
-        </div>
-    </div>
+<div class="container">
+    <h1 style="text-align: center;">신간도서</h1>
+    
+    <c:choose>
+        <c:when test="${not empty newBooks}">
+            <div class="book-grid">
+                <c:forEach var="book" items="${newBooks}">
+                    <div class="book-item" onclick="location.href='${pageContext.request.contextPath}/book/detail?bNo=${book.bookNo}'" style="cursor: pointer;">
+                        <img src="${pageContext.request.contextPath}/BOOK-IMG/${book.bookNo}.jpg" 
+                             alt="책 이미지" 
+                             class="book-image"
+                             onerror="this.src='${pageContext.request.contextPath}/BOOK-IMG/default.jpg'">
+                        <div class="book-name">${book.bookName}</div>
+                    </div>
+                </c:forEach>
+            </div>
+        </c:when>
+        <c:otherwise>
+            <div class="no-results">
+                신간도서가 없습니다.
+            </div>
+        </c:otherwise>
+    </c:choose>
 </div>
 
 <jsp:include page="../common/footer.jsp"></jsp:include>

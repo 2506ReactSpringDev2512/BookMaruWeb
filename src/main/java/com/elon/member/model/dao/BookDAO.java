@@ -327,11 +327,9 @@ public class BookDAO {
             Book book = new Book(bookName, author, publisher, category, bookCount, bookIntroTitle, bookIntroContent);
             bList.add(book);
 	    }
-		
 		rset.close();
 		pstmt.close();
 		conn.close();
-		
 		return bList;
 	}
 	

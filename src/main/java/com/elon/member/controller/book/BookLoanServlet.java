@@ -19,19 +19,19 @@ public class BookLoanServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + "/");
+        response.sendRedirect("/");
     }
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String memberId = (String) session.getAttribute("memberId");
 		if (memberId == null) {
-			response.sendRedirect(request.getContextPath() + "/member/login");
+			response.sendRedirect("/member/login");
 			return;
 		}
 		String bNo = request.getParameter("bookNo");
 		if (bNo == null || bNo.trim().isEmpty()) {
-			response.sendRedirect(request.getContextPath() + "/book/detail?bNo=" + bNo);
+			response.sendRedirect("/book/detail?bNo=" + bNo);
 			return;
 		}
 		BookService bService = new BookService();

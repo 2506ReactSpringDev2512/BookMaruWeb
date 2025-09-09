@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 
@@ -29,6 +30,12 @@ public class AdminListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String adminYN = (String) session.getAttribute("adminYN");
+		if(!"Y".equals(adminYN) && !"ADMIN".equals(adminYN)) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		BookService bService = new BookService();
 		List<Book> bList = bService.selectAllBooks();
 		request.setAttribute("bList", bList);
@@ -39,6 +46,12 @@ public class AdminListServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		String adminYN = (String) session.getAttribute("adminYN");
+		if(!"Y".equals(adminYN) && !"ADMIN".equals(adminYN)) {
+			response.sendRedirect("/member/login");
+			return;
+		}
 		String bNo = request.getParameter("bNo");
 		if (bNo != null && !bNo.trim().isEmpty()) {
 			response.sendRedirect(request.getContextPath() + "/admin/edit?bNo=" + bNo);
