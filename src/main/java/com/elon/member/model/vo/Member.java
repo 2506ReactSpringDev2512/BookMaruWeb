@@ -43,6 +43,14 @@ public class Member {
 		this.adminYN = adminYN;
 	}
 
+	public Member(String memberId, String memberName, String phone, int age, String adminYN) {
+		this.memberId = memberId;
+		this.memberName = memberName;
+		this.phone = phone;
+		this.age = age;
+		this.adminYN = adminYN;
+	}
+
 	public String getMemberId() {
 		return memberId;
 	}
