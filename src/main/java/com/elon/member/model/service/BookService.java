@@ -62,6 +62,114 @@ public class BookService {
         return result;
 	}
 
+	public int deleteBook(String bNo) {
+		int result = 0;
+        try {
+            Connection conn = bookTemplate.getConnection();
+            result = bDao.deleteBook(bNo, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+	}
+
+	public int recommendedBook(String bNo, String recommendedYN) {
+		int result = 0;
+        try {
+            Connection conn = bookTemplate.getConnection();
+            result = bDao.recommendedBook(bNo, recommendedYN, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+	}
+
+	public int advertiseBook(String bNo, String advertiseYN) {
+		int result = 0;
+        try {
+            Connection conn = bookTemplate.getConnection();
+            result = bDao.advertiseBook(bNo, advertiseYN, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+	}
+
+	public List<Book> searchBooks(String searchType, String searchTerm) {
+		List<Book> bList = null;
+        try {
+            Connection conn = bookTemplate.getConnection();
+            bList = bDao.searchBooks(searchType, searchTerm, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return bList;
+	}
+
+	public List<Book> selectRecommendedBooks() {
+		List<Book> bList = null;
+		Connection conn = null;
+        try {
+            conn = bookTemplate.getConnection();
+            bList = bDao.selectRecommendedBooks(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (conn != null) conn.close();
+        	} catch (SQLException e) {
+        		e.printStackTrace();
+        	}
+        }
+        return bList;
+	}
+	
+	public List<Book> selectNewBooks() {
+		List<Book> bList = null;
+		Connection conn = null;
+        try {
+            conn = bookTemplate.getConnection();
+            bList = bDao.selectNewBooks(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (conn != null) conn.close();
+        	} catch (SQLException e) {
+        		e.printStackTrace();
+        	}
+        }
+        return bList;
+	}
+	
+	public List<Book> selectAdvertiseBooks() {
+		List<Book> bList = null;
+		Connection conn = null;
+        try {
+            conn = bookTemplate.getConnection();
+            bList = bDao.selectAdvertiseBooks(conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+        	try {
+        		if (conn != null) conn.close();
+        	} catch (SQLException e) {
+        		e.printStackTrace();
+        	}
+        }
+        return bList;
+	}
+
+	public int loanBook(String bNo, String memberId) {
+		int result = 0;
+        try {
+            Connection conn = bookTemplate.getConnection();
+            result = bDao.loanBook(bNo, memberId, conn);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return result;
+	}
 	public List<Book> searchBookList(String bookSearchTerm, String searchType) {
 		List<Book> bList = new ArrayList<>();
 		try {
@@ -78,10 +186,9 @@ public class BookService {
 	
 	// 대출 목록 조회
     public List<BookLoan> getLendList(String memberId) {
-        Connection conn = null;
         List<BookLoan> lList = null;
         try {
-            conn = bookTemplate.getConnection();
+        	Connection conn = bookTemplate.getConnection();
             lList = bDao.getLendList(conn, memberId);
         } catch(Exception e) {
             e.printStackTrace();
@@ -90,28 +197,15 @@ public class BookService {
     }
 
     // 책 반납
-    public boolean returnBook(String memberId, String bookNo) {
-        Connection conn = null;
-        boolean success = false;
+    public int returnBook(String memberId, String bookNo) {
+        int result = 0;
         try {
-            conn = bookTemplate.getConnection();
-            conn.setAutoCommit(false);
-            
-            int result = bDao.returnBook(conn, memberId, bookNo);
-            if(result > 0) {
-                conn.commit();
-                success = true;
-            } else {
-                conn.rollback();
-            }
+        	Connection conn = bookTemplate.getConnection();
+            result = bDao.returnBook(memberId, bookNo, conn);
         } catch(Exception e) {
-            try { 
-            	if(conn != null) conn.rollback(); 
-            } catch(Exception ex) {}
             e.printStackTrace();
         }
-        return success;
+        return result;
     }
-
 
 }

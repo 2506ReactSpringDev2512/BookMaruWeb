@@ -14,7 +14,6 @@ import java.util.List;
 import com.elon.member.model.service.BookService;
 import com.elon.member.model.vo.Book;
 import com.elon.member.model.vo.BookLoan;
-import com.elon.member.model.vo.Member;
 
 /**
  * Servlet implementation class MyPageServlet
@@ -36,16 +35,12 @@ public class MyPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String memberId = (String) session.getAttribute("M_ID");
-	    BookService bservice = new BookService();
-
-	    List<BookLoan> lendList = bservice.getLendList(memberId);
+		String memberId = (String) session.getAttribute("memberId");
+	    BookService bService = new BookService();
+	    List<BookLoan> lendList = bService.getLendList(memberId);
+	    List<Book> recommendedBooks = bService.selectRecommendedBooks();
 	    request.setAttribute("lendList", lendList);
-
-	    RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp");
-	    rd.forward(request, response);
-	    
+	    request.setAttribute("recommendedBooks", recommendedBooks);
+	    request.getRequestDispatcher("/WEB-INF/views/member/mypage.jsp").forward(request, response);
 	}
-
-
 }

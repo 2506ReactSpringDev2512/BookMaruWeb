@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BookWeb - 책 수정</title>
+<title>BookWeb - 책 수정</title> 
 <style>
     /* BookWeb - 공통 스타일 */
     * {
@@ -137,9 +137,31 @@
         background-color: #f9fafb;
     }
 
-    /* Button Styles */
-    .submit-button {
+    /* File Input Styles */
+    .file-input {
         width: 100%;
+        height: 45px;
+        border: none;
+        border-radius: 8px;
+        padding: 10px 15px;
+        font-size: 16px;
+        background: transparent;
+        cursor: pointer;
+    }
+
+    .file-input:focus {
+        outline: none;
+    }
+
+    /* Button Styles */
+    .button-group {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 25px;
+    }
+
+    .submit-button {
+        flex: 1;
         height: 50px;
         background: #6b7280;
         color: white;
@@ -149,7 +171,6 @@
         font-weight: bold;
         cursor: pointer;
         transition: all 0.3s ease;
-        margin-bottom: 25px;
     }
 
     .submit-button:hover {
@@ -158,6 +179,29 @@
     }
 
     .submit-button:active {
+        transform: translateY(0);
+    }
+
+    .delete-button {
+        flex: 1;
+        height: 50px;
+        background: #dc2626;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .delete-button:hover {
+        background: #b91c1c;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
+    }
+
+    .delete-button:active {
         transform: translateY(0);
     }
 
@@ -222,8 +266,13 @@
                      onerror="this.src='${pageContext.request.contextPath}/BOOK-IMG/default.jpg'">
             </div>
             
-            <form method="post" action="${pageContext.request.contextPath}/admin/edit">
+            <form method="post" action="${pageContext.request.contextPath}/admin/edit" enctype="multipart/form-data">
                 <input type="hidden" name="bNo" value="${bNo}">
+                
+                <div class="form-group-inline">
+                    <label class="form-label-inline">이미지 변경</label>
+                    <input type="file" name="bookImage" class="file-input" accept="image/*">
+                </div>
                 
                 <div class="form-group-inline">
                     <label class="form-label-inline">제목</label>
@@ -260,7 +309,10 @@
                     <textarea name="bookIntroContent" class="form-textarea" required>${bList[0].bookIntroContent}</textarea>
                 </div>
                 
-                <button type="submit" class="submit-button">책 수정 완료</button>
+                <div class="button-group">
+                    <button type="submit" class="submit-button">책 수정 완료</button>
+                    <button type="button" class="delete-button" onclick="deleteBook('${bNo}')">책 삭제</button>
+                </div>
             </form>
             
             <div class="back-link">
@@ -268,5 +320,25 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function deleteBook(bNo) {
+            if (confirm('정말로 "' + bNo + '" 도서를 삭제하시겠습니까?\n\n이 작업은 되돌릴 수 없습니다.')) {
+                // 삭제 요청을 위한 form 동적 생성
+                const form = document.createElement('form');
+                form.method = 'POST';
+                form.action = '${pageContext.request.contextPath}/admin/delete';
+                
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = 'bNo';
+                input.value = bNo;
+                
+                form.appendChild(input);
+                document.body.appendChild(form);
+                form.submit();
+            }
+        }
+    </script>
 </body>
 </html>
