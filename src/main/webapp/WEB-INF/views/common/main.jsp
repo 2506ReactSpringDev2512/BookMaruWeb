@@ -12,7 +12,7 @@
     <div class="main-container">
         <div class="content-wrapper">
         <!-- Main Advertisement Section -->
-        <div class="advertisement-section">
+        <div class="advertisement-section"> 
             <div class="ad-books-grid" id="advertiseBooksGrid">
                 <c:choose>
                     <c:when test="${not empty advertiseBooks}">
