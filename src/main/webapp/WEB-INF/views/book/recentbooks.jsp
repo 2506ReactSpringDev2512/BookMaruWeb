@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>신간도서</title>
 <style>
-<<<<<<< HEAD
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -22,35 +21,11 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-top: 20px;
-=======
-/* 전체 컨테이너 */
-.main-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin-top: 20px;
->>>>>>> branch 'jungbeen' of https://github.com/2506ReactSpringDev2512/BookMaruWeb.git
-}
-
-<<<<<<< HEAD
-.book-grid {
-=======
-/* 섹션 제목 */
-.section-title {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-        margion: 0px;
 }
 
 /* 책 그리드 */
-.books-grid {
->>>>>>> branch 'jungbeen' of https://github.com/2506ReactSpringDev2512/BookMaruWeb.git
-    display: grid;
+.book-grid {
+	display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
@@ -99,14 +74,12 @@ body {
     color: #555;
 }
 
-<<<<<<< HEAD
 .no-results {
     text-align: center;
     color: #666;
     font-size: 18px;
     margin: 50px 0;
 }
-=======
 /* placeholder */
 .book-placeholder {
     height: 300px;
@@ -119,7 +92,6 @@ body {
     border-radius: 8px;
 }
 
->>>>>>> branch 'jungbeen' of https://github.com/2506ReactSpringDev2512/BookMaruWeb.git
 </style>
 </head>
 <body>

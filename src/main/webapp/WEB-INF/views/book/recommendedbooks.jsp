@@ -7,7 +7,6 @@
 <meta charset="UTF-8">
 <title>추천도서</title>
 <style>
-<<<<<<< HEAD
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -22,17 +21,6 @@ body {
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     margin-top: 20px;
-=======
-/* 전체 컨테이너 */
-.main-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        background-color: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        margin-top: 20px;
->>>>>>> branch 'jungbeen' of https://github.com/2506ReactSpringDev2512/BookMaruWeb.git
 }
 
 .book-grid {
@@ -82,14 +70,13 @@ body {
     color: #555;
 }
 
-<<<<<<< HEAD
 .no-results {
     text-align: center;
     color: #666;
     font-size: 18px;
     margin: 50px 0;
 }
-=======
+
 /* placeholder */
 .book-placeholder {
     height: 300px;
@@ -103,7 +90,6 @@ body {
 }
 
 
->>>>>>> branch 'jungbeen' of https://github.com/2506ReactSpringDev2512/BookMaruWeb.git
 </style>
 </head>
 <body>

@@ -55,7 +55,7 @@ pageEncoding="UTF-8"%>
     border: none;
     cursor: pointer;
     font-size: 16px;
-    color: #4caf50;
+    color: black;
 }
 
 /* 메뉴 */
