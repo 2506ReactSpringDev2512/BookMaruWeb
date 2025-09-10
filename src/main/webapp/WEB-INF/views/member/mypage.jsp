@@ -4,7 +4,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>마이페이지 | 북마루 도서관리 시스템</title>
     <style>
         body {
@@ -12,11 +11,12 @@
             padding: 0;
             font-family: 'Inria Sans', Arial, sans-serif;
             background-color: #ffffff;
+            min-width: 1280px;
+            overflow-x: auto;
         }
 
         .main-container {
-            width: 100%;
-            max-width: 1280px;
+            width: 1280px;
             margin: 0 auto;
             background-color: #ffffff;
             min-height: 100vh;
@@ -29,14 +29,25 @@
 
         /* 마이페이지 타이틀 */
         .mypage-title {
-            color: #000000;
-            text-align: center;
-            font-size: 48px;
-            font-family: 'Inria Sans', Arial, sans-serif;
-            font-weight: bold;
-            margin: 40px 0 60px 0;
-            line-height: 1.2;
-        }
+    /* 그라데이션 텍스트 색상 */
+    background: linear-gradient(135deg, 
+        #4ecdc4 0%, 
+        #44a08d 50%, 
+        #56ab2f 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    
+    text-align: center;
+    font-size: 48px;
+    font-family: 'Inria Sans', Arial, sans-serif;
+    font-weight: bold;
+    margin: -30px 0 60px 0;
+    line-height: 1.2;
+    
+    /* 텍스트에 약간의 그림자 효과 */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+}
 
         .section-title {
             padding: 0 20px;

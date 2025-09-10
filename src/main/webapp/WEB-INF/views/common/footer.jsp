@@ -12,11 +12,13 @@
             padding: 0;
             font-family: 'Inria Sans', Arial, sans-serif;
             background-color: #ffffff;
+            min-width: 1300px;
+            overflow-x: auto;
         }
 
         /* Footer */
         #footer {
-        	max-width: 1300px;
+        	width: 1300px;
         	margin: 0 auto;
             background: #d7d7d7;
             color: white;
@@ -27,7 +29,7 @@
         }
 
         .footer-container {
-            max-width: 1280px;
+            width: 1280px;
             margin: 0 auto;
             padding: 0 20px;
             display: flex;
@@ -65,7 +67,8 @@
         .footer-links {
             display: flex;
             gap: 30px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            margin-right: 20px;
         }
 
         .footer-link {

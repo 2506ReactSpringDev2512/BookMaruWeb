@@ -12,9 +12,11 @@
         margin: 0;
         padding: 0;
         background-color: #f5f5f5;
+        min-width: 1200px;
+        overflow-x: auto;
     }
     .container {
-        max-width: 1200px;
+        width: 1200px;
         margin: 0 auto;
         background-color: white;
         padding: 20px;
@@ -51,7 +53,7 @@
         border-radius: 4px;
         width: 300px;
         font-size: 14px;
-        min-width: 300px;
+        width: 300px;
     }
     .search-form input[type="submit"] {
         padding: 8px 20px;
@@ -67,9 +69,10 @@
     }
     .book-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(5, 220px);
         gap: 20px;
         padding: 20px;
+        justify-content: center;
     }
     .book-item {
         position: relative;

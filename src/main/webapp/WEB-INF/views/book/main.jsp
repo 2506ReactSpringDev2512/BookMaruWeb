@@ -4,7 +4,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>북마루 도서관리 시스템</title>
     <style>
         body {
@@ -12,11 +11,12 @@
             padding: 0;
             font-family: 'Inria Sans', Arial, sans-serif;
             background-color: #ffffff;
+            min-width: 1280px;
+            overflow-x: auto;
         }
         
         .main-container {
-            width: 100%;
-            max-width: 1280px;
+            width: 1280px;
             margin: 0 auto;
             background-color: #ffffff;
             min-height: 100vh;
@@ -27,19 +27,32 @@
             padding-top: 90px;
         }
         
-        /* 광고 섹션 책 표시용 스타일 */
-        .advertisement-section {
-            position: relative;
-            width: 100%;
-            max-width: 1280px;
-            height: 400px;
-            margin: 0 auto;
-            padding: 40px 20px;
-            background-color: #f8f9fa;
-            border: 2px solid #ddd;
-            border-radius: 12px;
-        }
-        
+       /* 광고 섹션 책 표시용 스타일 */
+		.advertisement-section {
+		    position: relative;
+		    width: 100%;
+		    max-width: 1280px;
+		    height: 400px;
+		    margin: 0 auto;
+		    padding: 40px 20px;
+		    
+		    /* 밝은 초록색 계열 그라데이션 배경 */
+		    background: linear-gradient(135deg, 
+		        #a8e6cf 0%, 
+		        #7fcdcd 25%, 
+		        #4ecdc4 50%, 
+		        #81c784 75%, 
+		        #aed581 100%);
+		    
+		    border: 2px solid #ddd;
+		    border-radius: 12px;
+		    
+		    /* 추가 효과 */
+		    box-shadow: 
+		        0 15px 35px rgba(0,0,0,0.1),
+		        0 5px 15px rgba(0,0,0,0.05);
+		}  
+
         .ad-books-grid {
             display: flex;
             gap: 30px;
@@ -112,7 +125,7 @@
             gap: 20px;
             padding: 0 20px;
             justify-content: center;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             margin-bottom: 30px;
         }
         

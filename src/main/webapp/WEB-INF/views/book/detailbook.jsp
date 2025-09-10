@@ -4,7 +4,6 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>책 상세보기 - 북마루 도서관리 시스템</title>
     <style>
         body {
@@ -12,11 +11,12 @@
             padding: 0;
             font-family: 'Inria Sans', Arial, sans-serif;
             background-color: #ffffff;
+            min-width: 1280px;
+            overflow-x: auto;
         }
         
         .main-container {
-            width: 100%;
-            max-width: 1280px;
+            width: 1280px;
             margin: 0 auto;
             background-color: #ffffff;
             min-height: 100vh;
@@ -33,7 +33,8 @@
             border-radius: 12px;
             padding: 40px;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            max-width: 800px;
+            width: 800px;
+            min-width: 800px;
             margin: 0 auto;
         }
         

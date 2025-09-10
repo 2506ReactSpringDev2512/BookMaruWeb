@@ -10,9 +10,11 @@
         font-family: Arial, sans-serif;
         margin: 20px;
         background-color: #f5f5f5;
+        min-width: 1240px;
+        overflow-x: auto;
     }
     .container {
-        max-width: 1200px;
+        width: 1200px;
         margin: 0 auto;
         background-color: white;
         padding: 20px;
@@ -26,9 +28,10 @@
     }
     .book-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(5, 220px);
         gap: 20px;
         padding: 20px;
+        justify-content: center;
     }
     .book-item {
         border: 2px solid #ddd;

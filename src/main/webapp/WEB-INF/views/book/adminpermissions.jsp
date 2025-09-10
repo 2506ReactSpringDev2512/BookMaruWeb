@@ -4,7 +4,6 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookWeb - 관리자 권한 관리</title>
     <style>
         /* BookWeb - 공통 스타일 */
@@ -20,7 +19,8 @@
             color: #333;
             min-height: 100vh;
             padding: 20px;
-            
+            min-width: 1240px;
+            overflow-x: auto;
         }
 
         /* Header */
@@ -43,7 +43,7 @@
 
         /* Container */
         .container {
-            max-width: 1200px;
+            width: 1200px;
             margin: 0 auto;
             background: white;
             border-radius: 12px;

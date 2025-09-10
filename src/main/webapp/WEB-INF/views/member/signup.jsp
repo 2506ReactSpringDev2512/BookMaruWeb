@@ -4,7 +4,6 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BookWeb - 회원가입</title>
     <style>
         /* BookWeb - 공통 스타일 */
@@ -19,6 +18,8 @@
             background: #f5f5f5;
             color: #333;
             min-height: 100vh;
+            min-width: 550px;
+            overflow-x: auto;
         }
 
         /* Main Content */
@@ -28,6 +29,7 @@
             align-items: center;
             justify-content: center;
             padding: 40px;
+            min-width: 550px;
         }
 
         .login-container {
@@ -36,13 +38,14 @@
             border-radius: 12px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             padding: 40px;
-            width: 100%;
-            max-width: 450px;
+            width: 450px;
+            min-width: 450px;
         }
 
         /* 회원가입 컨테이너는 조금 더 크게 */
         .signup-container {
-            max-width: 500px;
+            width: 500px;
+            min-width: 500px;
         }
 
         /* Header */

@@ -12,7 +12,7 @@ pageEncoding="UTF-8"%>
 <style>
 /* 헤더 전체 */
 .header {
-	max-width: 1200px;
+	width: 1200px;
 	margin: 0 auto;
     display: flex;
     align-items: center;
@@ -20,6 +20,7 @@ pageEncoding="UTF-8"%>
     background-color: #fff;
     padding: 8px 20px;
     height: 55px;
+    min-width: 1200px;
 }
 
 /* 로고 */
@@ -35,12 +36,14 @@ pageEncoding="UTF-8"%>
     flex: 1;
     display: flex;
     justify-content: center;
-    max-width: 500px;
+    width: 500px;
+    min-width: 500px;
     margin: 0 20px;
 }
 
 .search-form input[type="text"] {
-    width: 100%;
+    width: 400px;
+    min-width: 400px;
     padding: 10px 15px;
     border: 2px solid #2c3e50;
     border-radius: 25px;
