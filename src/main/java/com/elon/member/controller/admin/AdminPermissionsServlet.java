@@ -1,4 +1,4 @@
-package com.elon.member.controller.book;
+package com.elon.member.controller.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -41,7 +41,7 @@ public class AdminPermissionsServlet extends HttpServlet {
 		MemberService mService = new MemberService();
 		List<Member> mList = mService.selectAllUsers();
 		request.setAttribute("mList", mList);
-		request.getRequestDispatcher("/WEB-INF/views/book/adminpermissions.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/admin/adminpermissions.jsp").forward(request, response);
 	}
 
 	/**

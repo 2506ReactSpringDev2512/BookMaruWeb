@@ -38,7 +38,7 @@ public class MainServlet extends HttpServlet {
         request.setAttribute("recommendedBooks", recommendedBooks);
         request.setAttribute("newBooks", newBooks);
         request.setAttribute("advertiseBooks", advertiseBooks);
-		request.getRequestDispatcher("/WEB-INF/views/book/main.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/common/main.jsp").forward(request, response);
 	}
 
 }

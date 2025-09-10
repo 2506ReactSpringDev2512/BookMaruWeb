@@ -1,4 +1,4 @@
-package com.elon.member.controller.book;
+package com.elon.member.controller.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -15,15 +15,15 @@ import com.elon.member.model.vo.Book;
 
 @WebServlet("/admin/insert-book")
 @MultipartConfig(maxFileSize = 1024*1024*10)
-public class InsertBookServlet extends HttpServlet {
+public class AdminInsertBookServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    public InsertBookServlet() {
+    public AdminInsertBookServlet() {
         super();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/WEB-INF/views/book/insertbook.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/admin/admininsertbook.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

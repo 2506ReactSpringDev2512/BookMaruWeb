@@ -1,4 +1,4 @@
-package com.elon.member.controller.book;
+package com.elon.member.controller.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -23,7 +23,7 @@ public class AdminMainServlet extends HttpServlet {
 			response.sendRedirect("/member/login");
 			return;
 		}
-		request.getRequestDispatcher("/WEB-INF/views/book/adminmain.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/admin/adminmain.jsp").forward(request, response);
 	}
 
 }

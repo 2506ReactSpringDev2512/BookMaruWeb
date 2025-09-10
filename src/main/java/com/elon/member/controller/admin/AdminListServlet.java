@@ -1,4 +1,4 @@
-package com.elon.member.controller.book;
+package com.elon.member.controller.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -39,7 +39,7 @@ public class AdminListServlet extends HttpServlet {
 		BookService bService = new BookService();
 		List<Book> bList = bService.selectAllBooks();
 		request.setAttribute("bList", bList);
-		request.getRequestDispatcher("/WEB-INF/views/book/adminlist.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/admin/adminlist.jsp").forward(request, response);
 	}
 
 	/**

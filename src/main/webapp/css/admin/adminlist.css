@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f5f5f5;
+    min-width: 1240px;
+    overflow-x: auto;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 220px);
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+}
+
+.book-item {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    height: 250px;
+    position: relative;
+}
+
+.book-item:hover {
+    border-color: #4CAF50;
+    background-color: #f0f8f0;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.book-form {
+    margin: 0;
+}
+
+.book-image {
+    width: 150px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 0px;
+    border: 1px solid #ddd;
+}
+
+.book-info {
+    margin-top: 10px;
+}
+
+.book-no {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.book-name {
+    color: #34495e;
+    font-size: 14px;
+}
+
+.no-books {
+    text-align: center;
+    color: #666;
+    font-size: 18px;
+    margin: 50px 0;
+}
+
+/* Link Styles */
+.back-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-link p {
+    color: #666;
+    font-size: 14px;
+}
+
+.back-link a {
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
+
+/* 별 아이콘 스타일 */
+.star-icon {
+    position: absolute;
+    top: 0px;
+    left: 5px;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.star-recommended {
+    color: #FFD700;
+}
+
+.star-not-recommended {
+    color: #ddd;
+}
+
+/* 하트 아이콘 스타일 */
+.heart-icon {
+    position: absolute;
+    top: 0px;
+    right: 10px;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.heart-advertise {
+    color: #FF6B6B;
+}
+
+.heart-not-advertise {
+    color: #ddd;
+}

@@ -1,4 +1,4 @@
-package com.elon.member.controller.book;
+package com.elon.member.controller.admin;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -49,7 +49,7 @@ public class AdminEditServlet extends HttpServlet {
 			BookService bService = new BookService();
 			List<Book> bList = bService.infoBooks(bNo);
 			request.setAttribute("bList", bList);
-			request.getRequestDispatcher("/WEB-INF/views/book/adminedit.jsp").forward(request, response);
+			request.getRequestDispatcher("/WEB-INF/views/admin/adminedit.jsp").forward(request, response);
 		} else {
 			response.sendRedirect("/admin/list");
 		}

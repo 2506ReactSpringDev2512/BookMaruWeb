@@ -1,0 +1,221 @@
+/* BookWeb - 공통 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', 'Noto Sans KR', sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    min-height: 100vh;
+    min-width: 650px;
+    overflow-x: auto;
+}
+
+/* Main Content */
+.main-content {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    min-width: 650px;
+}
+
+.form-container {
+    background: white;
+    border: 3px solid #333;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 40px;
+    width: 600px;
+    min-width: 600px;
+}
+
+/* Header */
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-title {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-subtitle {
+    color: #666;
+    font-size: 16px;
+}
+
+.book-image-preview {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.book-image-preview img {
+    max-width: 150px;
+    max-height: 200px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group-inline {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.form-label-inline {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    min-width: 80px;
+    margin: 0;
+}
+
+.form-input {
+    width: 100%;
+    height: 45px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: #6b7280;
+    background-color: #f9fafb;
+}
+
+.form-input::placeholder {
+    color: #9ca3af;
+}
+
+/* Textarea Styles */
+.form-textarea {
+    width: 100%;
+    min-height: 100px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    padding: 12px 15px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: #6b7280;
+    background-color: #f9fafb;
+}
+
+/* File Input Styles */
+.file-input {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 15px;
+    font-size: 16px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.file-input:focus {
+    outline: none;
+}
+
+/* Button Styles */
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.submit-button {
+    flex: 1;
+    height: 50px;
+    background: #6b7280;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(107, 114, 128, 0.3);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}
+
+.delete-button {
+    flex: 1;
+    height: 50px;
+    background: #dc2626;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.delete-button:hover {
+    background: #b91c1c;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(220, 38, 38, 0.3);
+}
+
+.delete-button:active {
+    transform: translateY(0);
+}
+
+/* Link Styles */
+.back-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.back-link p {
+    color: #666;
+    font-size: 14px;
+}
+
+.back-link a {
+    color: #6b7280;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link a:hover {
+    text-decoration: underline;
+}
