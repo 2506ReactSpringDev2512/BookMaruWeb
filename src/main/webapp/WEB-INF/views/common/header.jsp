@@ -52,7 +52,7 @@ pageEncoding="UTF-8"%>
             <c:when test="${not empty sessionScope.memberId}">
                 <!-- 로그인된 상태 - 드롭다운 메뉴 -->
                 <div class="user-menu">
-                    <img src="${pageContext.request.contextPath}/BOOK-IMG/mypage.png" alt="내 서재" class="user-icon">
+                    <img src="${pageContext.request.contextPath}/BOOK-IMG/mypage2.png" alt="내 서재" class="user-icon">
                     <div class="dropdown-menu">
                         <a href="/member/mypage">내 서재</a>
                         <a href="/member/logout">로그아웃</a>
@@ -62,7 +62,7 @@ pageEncoding="UTF-8"%>
             <c:otherwise>
                 <!-- 로그인되지 않은 상태 - 로그인 페이지로 이동 -->
                 <a href="/member/login">
-                    <img src="${pageContext.request.contextPath}/BOOK-IMG/mypage.png" alt="로그인" class="user-icon">
+                    <img src="${pageContext.request.contextPath}/BOOK-IMG/mypage1.png" alt="로그인" class="user-icon">
                 </a>
             </c:otherwise>
         </c:choose>

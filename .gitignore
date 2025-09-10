@@ -1,5 +1,6 @@
 /build/
 .claude-flow/
+.claude/
 .settings
 .swarm
 .classpath

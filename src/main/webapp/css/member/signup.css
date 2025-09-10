@@ -101,7 +101,7 @@ body {
 
 .form-input:focus {
 	outline: none;
-	border-color: #4f46e5;
+	border-color: #4caf50;
 	background-color: #f9fafb;
 }
 
@@ -145,8 +145,8 @@ body {
 }
 
 .radio-label input[type="radio"]:checked ~ .radio-custom {
-	background-color: #4f46e5;
-	border-color: #4f46e5;
+	background-color: #4caf50;
+	border-color: #4caf50;
 }
 
 .radio-label input[type="radio"]:checked ~ .radio-custom:after {
