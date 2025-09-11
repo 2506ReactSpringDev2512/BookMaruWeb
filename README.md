@@ -1,4 +1,5 @@
 아래는 프로젝트 발표용 프레젠테이션 테스트 슬라이드입니다
+![슬라이드 1](https://github.com/2506ReactSpringDev2512/BookMaruWeb/blob/d43ca0ec80c2f7a475827afb6c6faba2731bef6b/PDF01/ClassDiagram.png)
 ![슬라이드 1](https://github.com/2506ReactSpringDev2512/BookMaruWeb/blob/d43ca0ec80c2f7a475827afb6c6faba2731bef6b/PDF01/bookmaru-01.png)
 ![슬라이드 1](https://github.com/2506ReactSpringDev2512/BookMaruWeb/blob/d43ca0ec80c2f7a475827afb6c6faba2731bef6b/PDF01/ERD.png)
 ![슬라이드 1](https://github.com/2506ReactSpringDev2512/BookMaruWeb/blob/d43ca0ec80c2f7a475827afb6c6faba2731bef6b/PDF01/bookmaru-02.png)
